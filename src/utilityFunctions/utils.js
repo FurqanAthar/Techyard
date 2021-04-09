@@ -1,5 +1,5 @@
 export function paginateProducts(products) {
-    const itemsPerPage = 4
+    const itemsPerPage = 6
     const numberOfPages = Math.ceil(products.length / itemsPerPage)
 
     const newProducts = Array.from({length : numberOfPages}, (_, index) => {

@@ -256,12 +256,12 @@ label[for=toggle] {
 .filtration-and-products {
     display: flex;
     flex-wrap: wrap;
-    margin: 20px 0px;
+    margin: 20px 20px;
 }
 
 /*  Pagenation*/
 .pagenated-products-section {
-    width: 70%;
+    width: 75%;
     text-align: center;
 }
 
@@ -304,11 +304,11 @@ label[for=toggle] {
 
 /* Filters */
 .filter-section {
-    max-width: 30%;
+    max-width: 25%;
 }
 .filter-form {
     display: flex;
-    margin: 0 30px;
+    margin: 0 auto;
     flex-wrap: wrap;
 }
 .single-filter-box {
