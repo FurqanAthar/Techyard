@@ -82,6 +82,12 @@ h4 {
     color: var(--golden);
 }
 
+/* Navbar */
+/* #myHeader {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+} */
 nav {
 	background: var(--black);
 	height: 80px;
@@ -89,10 +95,11 @@ nav {
     padding: 10px!important;
     display: flex;
     align-content: space-between;
-    /* float: left; */
+}
+nav a {
+    width: 15%;
 }
 nav .logo {
-	width: 15%;
     object-fit: cover;
 }
 nav form {
@@ -130,34 +137,24 @@ nav .sidebar {
     display: none;
     width: 0%;
 }
-nav #toggle {
-    display: none;
-}
-label[for=toggle] {
+.navLinks {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    padding: 25px 0px;
-}
-#toggle:checked ~ #slidingMenu {
-    right: 0!important;
-}
-#slidingMenu {
-    position: fixed;
-    top: 0;
-    right: -240px;
-    bottom: 0;
-    width: 240px;
-    background-color: var(--black);
-}
-#slidingMenu ul {
-    list-style: none;
-}
-#slidingMenu ul li {
-    margin: 15px 0px!important;
-}
-#slidingMenu ul li a{
-    color: white;
+    background: var(--black);
+    font-size: 20px;
     font-family: var(--poppins);
-    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin: 0;
+    padding: 10px 15px 15px 15px;
+}
+.navLinks li{
+    list-style: none;
+    margin: 5px 15px;
+}
+.navLinks a {
+    color: var(--white);
 }
 
 /* Banner for HOME, MOBILE Pages etc */
