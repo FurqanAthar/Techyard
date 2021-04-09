@@ -1,13 +1,448 @@
-body {
+/* React Image Slider */
+@import "react-slideshow-image/dist/styles.css";
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+    --white: #fff;
+    --backgroundDark: #131313;
+    --bannerBackground: #212121;
+    --golden: #cb9400;
+    --black: #000;
+    --silver: #8b8b8b;
+    --mainTransition: all 0.3s linear;
+    --poppins: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--backgroundDark);
+    color: var(--white);
+    font-family: var(--poppins);
+    padding: 0px!important;
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: 600;
+}
+h2 {
+    font-size: 24px;
+    font-weight: 500;
+}
+h3 {
+    font-size: 20px;
+    font-weight: 500;
+}
+p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+h4 {
+    font-size: 12px;
+    font-weight: 400;
+}
+.section {
+    margin: 30px;
+}
+.btn, .btn-primary, .btn-secondary {
+    min-width: 130px;
+    border: 2px solid var(--golden);
+    border-radius: 0px;
+    padding: 15px 25px;
+    display: inline-block;
+    transition: var(--mainTransition);
+    font-family: var(--poppins);
+    font-size: 14px;
+    font-weight: 300;
+    margin: 10px 0px;
+}
+.btn:active {
+    background: transparent;
+}
+.btn-primary {
+    background: transparent;
+    color: var(--golden);
+    margin-right: 10px;
+}
+.btn-primary:hover {
+    background: var(--golden);
+    color: white;
+}
+.btn-secondary {
+    background: var(--golden);
+    color: white;
+}
+.btn-secondary:hover {
+    background: transparent;
+    color: var(--golden);
+}
+
+nav {
+	background: var(--black);
+	height: 80px;
+	width: 100%;
+    padding: 10px!important;
+    display: flex;
+    align-content: space-between;
+    /* float: left; */
+}
+nav .logo {
+	width: 15%;
+    object-fit: cover;
+}
+nav form {
+    display: inline-block;
+    width: 65%;
+    margin: 10px 0px;
+    text-align: center;
+}
+nav form input {
+    width: 80%;
+    background: var(--bannerBackground)!important;
+    color: var(--silver)!important;
+    padding: 20px!important;
+    font-family: var(--poppins);
+    font-size: 16px;
+    font-weight: 300;
+    border-radius: 25px!important;
+}
+nav .mainMenu {
+    width: 15%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0!important;
+}
+nav .mainMenu li {
+	display: inline-block;
+	line-height: 70px;
+	margin: 0 15px;
+}
+nav .mainMenu li a, nav .mainMenu li label{
+    color: var(--white);
+    font-size: 20px;
+}
+nav .sidebar {
+    display: none;
+    width: 0%;
+}
+nav #toggle {
+    display: none;
+}
+label[for=toggle] {
+    align-items: center;
+    padding: 25px 0px;
+}
+#toggle:checked ~ #slidingMenu {
+    right: 0!important;
+}
+#slidingMenu {
+    position: fixed;
+    top: 0;
+    right: -240px;
+    bottom: 0;
+    width: 240px;
+    background-color: var(--black);
+}
+#slidingMenu ul {
+    list-style: none;
+}
+#slidingMenu ul li {
+    margin: 15px 0px!important;
+}
+#slidingMenu ul li a{
+    color: white;
+    font-family: var(--poppins);
+    font-size: 16px;
+}
+
+/* Banner for HOME, MOBILE Pages etc */
+.banner {
+    min-height: 100%;
+    background-color: var(--bannerBackground);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 100px;
+}
+.banner p {
+    color: var(--silver);
+    margin: 20px 0px;
+}
+.banner .banner-content {
+    width: 50%;
+}
+
+/* Single Product Card */
+.product-card {
+    padding: 30px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    max-width: 300px;
+    transition: var(--mainTransition);
+}
+.product-card:hover {
+    -webkit-box-shadow: 3px 3px 16px 8px #000000; 
+    box-shadow: 3px 3px 16px 8px #000000;
+    transform: scale(1.02);
+    transition: all .4s
+}
+.product-card .product-image-container {
+    overflow: hidden;
+    margin: 0 0 15px;
+    display: flex;
+    position: relative;
+}
+.product-card .product-image-container .single-image {
+    min-width: 100%;
+    text-align: center;
+}
+.product-card .product-image-container img {
+    display: block;
+    width: 100%!important;
+    height: 275px!important;
+    object-fit:contain;
+    transition: all 1s ease;
+}
+.product-card .product-image-container input {
+    display: none;
+}
+.product-card .product-content .product-title {
+    display: block;
+    margin: 0 0 12px;
+}
+.product-card .product-content .product-brand {
+    text-transform: uppercase;
+}
+.product-card .product-content .product-price {
+    color: var(--golden);
+}
+.product-card .color-box {
+    margin: 0 0 25px;
+    list-style: none;
+}
+.product-card .color-box span {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+    margin: 0 3px;
+}
+
+.product-card p {
+    color: var(--silver);
+}
+.product-card .links {
+    padding: 10px 15px;
+    display: inline-block;
+    background: var(--bannerBackground);
+}
+.product-card .links li {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+    margin: 0 10px;
+    color: var(--golden);
+}
+
+/* Filter Boxes and Products Side by Side */
+.filtration-and-products {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 0px;
+}
+
+/*  Pagenation*/
+.pagenated-products-section {
+    width: 70%;
+    text-align: center;
+}
+
+.pagination-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 10px auto;
+}
+
+.page-btn {
+    margin: 5px;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    background: transparent;
+    border: 2px solid var(--golden);
+    transition: var(--mainTransition);
+    color: var(--golden);
+    font-family: var(--poppins);
+    font-size: 16px;
+}
+.page-btn:hover {
+    background: var(--golden);
+    color: var(--white);
+}
+.page-btn-current {
+    background: var(--golden);
+    color: var(--white);
+}
+
+/* Products List */
+.products-center {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    column-gap: 05px;
+    row-gap: 1.8rem;
+}
+
+/* Filters */
+.filter-section {
+    max-width: 30%;
+}
+.filter-form {
+    display: flex;
+    margin: 0 30px;
+    flex-wrap: wrap;
+}
+.single-filter-box {
+    background: var(--bannerBackground);
+    padding: 30px;
+    width: 90%;
+    margin-bottom: 20px;
+}
+.filter-box-title {
+    text-transform: uppercase;
+}
+.filters {
+    margin: 10px 0px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.filters label {
+    font-size: 16px;
+    color: var(--silver);
+    font-weight: 400;
+}
+.filters .container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.filters .container label {
+    display: inline-block;
+}
+.filters .container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.filters .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  background-color: transparent;
+  border: 2px solid var(--golden);
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: var(--golden);
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: var(--golden);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 5px;
+  top: 0px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+} 
+
+@media screen and (max-width:767px) {
+    nav .logo {
+        width: 25%;
+    }
+    nav form {
+        width: 50%;
+    }
+    nav .mainMenu {
+        display: none;
+    }
+    nav .sidebar {
+        display: flex!important;
+        width: 25%;
+        justify-content: flex-end;
+    }
+    .banner {
+        padding: 50px;
+    }
+}
+
+@media screen and (max-width:479px) {
+    h1 {
+        font-size: 40px;
+    }
+    nav {
+        padding: 10px;
+        justify-content: space-between;
+    }
+    nav form {
+        display: none;
+    }
+    nav .logo {
+        width: 50%;
+    }
+    nav .sidebar {
+        display: flex!important;
+        width: 25%;
+        justify-content: flex-end;
+    }
+    .banner {
+        padding: 30px 15px;
+    }
+    .banner .banner-content{
+        width: 100%!important;
+    }
+    .banner .banner-image {
+        display: none;
+    }
 }
