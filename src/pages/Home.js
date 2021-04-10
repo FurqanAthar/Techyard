@@ -4,16 +4,26 @@ import Banner from '../components/banner'
 import bannerImage from '../assets/banner images/home/homebanner.png'
 import MobileContextProvider, { mobileContext } from '../context/mobileContext'
 import ProductList from '../components/productList'
+import SmallBannerCards from '../components/SmallBannerCards'
 
 export default function Home() {
-    const mobileContextTaken = React.useContext(mobileContext)
+    const {mobileData} = React.useContext(mobileContext)
+    const limitedMobileData = []
+
+    for (var i=0; i<4; i++) {
+        limitedMobileData.push(mobileData[i])
+    }
     return (
         <div>
             <Banner image={bannerImage} title = "Samsung S21" info = "The Samsung Galaxy S21 is a series of Android-based smartphones designed, developed, marketed, and manufactured by Samsung Electronics as part of its Galaxy S series.">
-                <Link to = '/' className = "btn btn-primary"> See All! </Link>
-                <Link to = '/' className = "btn btn-secondary"> Know More! </Link>
+                <Link to = '/mobiles' className = "btn btn-primary"> See All! </Link>
+                <Link to = '/mobiles' className = "btn btn-secondary"> Know More! </Link>
             </Banner>
-            <ProductList products = {mobileContextTaken.mobileData}></ProductList>
+            {/* <SmallBannerCards/> */}
+            <div className="section">
+                <h2>MOBILES</h2>
+                <ProductList products = {limitedMobileData}></ProductList>
+            </div>
         </div>
     )
 }

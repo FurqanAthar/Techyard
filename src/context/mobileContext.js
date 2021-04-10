@@ -15,7 +15,8 @@ export default function MobileContextProvider({children}) {
         battery : "all",
         chargingType : "all",
         color : "all",
-        brand: "all"
+        brand: "all",
+        search : ""
     })
     const [brands, setBrands] = React.useState([])
     const [roms, setRoms] = React.useState([])
@@ -42,7 +43,7 @@ export default function MobileContextProvider({children}) {
     // For applying filters
     React.useEffect(() => {
         let newProducts = [...mobileData]
-        const {brand, rom, ram, battery, chargingType, price} = filters
+        const {brand, rom, ram, battery, chargingType, price, search} = filters
 
         if (brand !== "all") {
             newProducts = newProducts.filter(item => item.brand.toLowerCase() == brand)
@@ -67,12 +68,32 @@ export default function MobileContextProvider({children}) {
                 newProducts = newProducts.filter(item => item.price > 100000)
             }
         }
+        if (search !== "") {
+            newProducts = newProducts.filter(item => {
+                if (item.model.toLowerCase().includes(search.toLowerCase()) || item.brand.toLowerCase().includes(search.toLowerCase())) {
+                    return item
+                }
+            })
+        }
         setPage(0)
         setSortedProducts(paginateProducts(newProducts))
     }, [mobileData, filters])
 
     const changePage = (index) => {
         setPage(index)
+    }
+    const clearFilters = () => {
+        let filtersCopy = {
+            price : "all",
+            ram : "all",
+            rom : "all",
+            battery : "all",
+            chargingType : "all",
+            color : "all",
+            brand: "all",
+            search : ""
+        }
+        setFilters({...filtersCopy})
     }
     const updateFilters = (e) => {
         const type = e.target.type
@@ -98,10 +119,13 @@ export default function MobileContextProvider({children}) {
         else if (filter == `price`) {
             filtersCopy.price = value
         }
+        else if (filter == `search`) {
+            filtersCopy.search = value
+        }
         setFilters({...filtersCopy})
     }
     return (
-        <mobileContext.Provider value = {{mobileData, sortedProducts, page, changePage, filters, roms, rams, allColors, batterys, chargingTypes, brands, updateFilters}}>
+        <mobileContext.Provider value = {{mobileData, sortedProducts, page, changePage, filters, roms, rams, allColors, batterys, chargingTypes, brands, updateFilters, clearFilters}}>
             {children}
         </mobileContext.Provider>
     )

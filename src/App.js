@@ -4,6 +4,9 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Home from './pages/Home'
 import Navbar from './components/navbar'
 import Mobiles from './pages/Mobiles'
+import Laptops from './pages/Laptops'
+import Tablets from './pages/Tablets'
+import Accessories from './pages/Accessories'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
 import ForgotPassword from './pages/ForgotPassword'
@@ -17,7 +20,13 @@ function App() {
       <Switch>
         <Route exact path="/"> <Home/> </Route>
         <Route exact path="/mobiles"> <Mobiles/> </Route>
+        <Route exact path="/laptops"> <Laptops/> </Route>
+        <Route exact path="/tablets"> <Tablets/> </Route>
+        <Route exact path="/accessories"> <Accessories/> </Route>
         <Route path="/mobiles/:id"> <MobileDetailPage/> </Route>
+        {/* <Route path="/laptops/:id"> <MobileDetailPage/> </Route> */}
+        {/* <Route path="/laptops/:id"> <MobileDetailPage/> </Route> */}
+        {/* <Route path="/laptops/:id"> <MobileDetailPage/> </Route> */}
         <Route path="/login"><Login/></Route>
         <Route path="/signup"><Signup/></Route>
         <Route path="/forgot-password"><ForgotPassword/></Route>
