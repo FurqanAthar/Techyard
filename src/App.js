@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Home from './pages/Home'
 import Navbar from './components/navbar'
 import Mobiles from './pages/Mobiles'
+import MobileDetailPage from './pages/productDetails/mobileDetailPage'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Switch>
         <Route exact path="/"> <Home/> </Route>
         <Route exact path="/mobiles"> <Mobiles/> </Route>
+        <Route path="/mobiles/:id"> <MobileDetailPage/> </Route>
       </Switch>
     </Router>
   );

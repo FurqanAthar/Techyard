@@ -8,6 +8,7 @@ export default function PagenatedProducts({data}) {
             <div className="pagenated-products-section">
                 <h3>Showing {sortedProducts[page].length} out of {sortedProducts.flat().length} products</h3>
                 <ProductList products = {sortedProducts[page]}/>
+                {/* Buttons for Pagination */}
                 {
                     sortedProducts.length > 1 && (
                         <div className="pagination-buttons">

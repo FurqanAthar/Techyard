@@ -7,7 +7,7 @@ export default function ProductList({products}) {
             <div className="products-center">
                 {
                     products.map((singleProduct, index) => {
-                        return <ProductCard singleProductData = {singleProduct} key = {index}></ProductCard>
+                        return <ProductCard singleProductData = {singleProduct} key = {singleProduct.id}></ProductCard>
                     })
                 }
             </div>

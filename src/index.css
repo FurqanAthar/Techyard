@@ -25,6 +25,13 @@ body {
     padding: 0px!important;
 }
 
+a {
+    color: var(--white);
+}
+a:hover {
+    color: var(--white);
+}
+
 h1 {
     font-size: 50px;
     font-weight: 600;
