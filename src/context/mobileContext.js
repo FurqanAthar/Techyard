@@ -59,6 +59,14 @@ export default function MobileContextProvider({children}) {
         if (chargingType !== "all") {
             newProducts = newProducts.filter(item => item.features.charging.type == chargingType)
         }
+        if (price !== "all") {
+            if (price !== "other") {
+                newProducts = newProducts.filter(item => item.price <= price)
+            }
+            else {
+                newProducts = newProducts.filter(item => item.price > 100000)
+            }
+        }
         setPage(0)
         setSortedProducts(paginateProducts(newProducts))
     }, [mobileData, filters])
@@ -86,6 +94,9 @@ export default function MobileContextProvider({children}) {
         }
         else if (filter == `chargingType`) {
             filtersCopy.chargingType = value
+        }
+        else if (filter == `price`) {
+            filtersCopy.price = value
         }
         setFilters({...filtersCopy})
     }

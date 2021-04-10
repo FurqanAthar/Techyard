@@ -27,6 +27,7 @@ body {
 
 a {
     color: var(--white);
+    cursor: pointer;
 }
 a:hover {
     color: var(--white);
@@ -90,11 +91,6 @@ h4 {
 }
 
 /* Navbar */
-/* #myHeader {
-    position: sticky;
-    top: 0;
-    z-index: 999;
-} */
 nav {
 	background: var(--black);
 	height: 80px;
@@ -157,6 +153,35 @@ nav .sidebar {
 }
 .navLinks a {
     color: var(--white);
+}
+
+/* Signup */
+.signup {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fade {
+    opacity: 1;
+}
+.signup-container {
+    /* text-align: center; */
+    width: 450px;
+    padding: 30px;
+}
+.signup-container form {
+    width: 95%;
+}
+.signup-container form div {
+    margin: 10px 0;
+}
+.signup-container label {
+    color: var(--silver);
+}
+.signup-container input {
+    padding: 20px;
+    width: 100%;
 }
 
 /* Banner for HOME, MOBILE Pages etc */
@@ -397,6 +422,12 @@ nav .sidebar {
 } 
 
 /* Product Detail Page */
+.breadcrumbs {
+    color: var(--golden);
+}
+.breadcrumbs a {
+    color: var(--silver);
+}
 .card-wrapper {
     display: flex;
     justify-content: center;

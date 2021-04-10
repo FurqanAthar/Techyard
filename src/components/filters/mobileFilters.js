@@ -2,10 +2,34 @@ import React from 'react'
 
 export default function MobileFilters({data}) {
     const {filters, roms, rams, allColors, batterys, chargingTypes, brands, updateFilters} = data
-    console.log(data)
+    const prices = [10000, 25000, 50000, 75000, 100000]
     return (
         <div className = "filter-section">
             <form className="filter-form">
+                {/* Single Filter Box */}
+                <div className="single-filter-box">
+                    <h3 className="filter-box-title">Filter by Price</h3>
+                    <div className="filters">
+                        <label className="container">ALL
+                            <input type="checkbox" checked={filters.price == "all"} name="price" value = "all" onChange={updateFilters}/>
+                            <span className="checkmark"></span>
+                        </label>
+                        {
+                            prices.length > 0 && prices.map((singlePrice, index) => {
+                                return (
+                                    <label className="container">{`<`}{singlePrice}
+                                        <input type="checkbox" checked={filters.price == singlePrice} name="price" value = {singlePrice} onChange={updateFilters}/>
+                                        <span className="checkmark"></span>
+                                    </label>
+                                )
+                            })
+                        }
+                        <label className="container">Others
+                            <input type="checkbox" checked={filters.price == "other"} name="price" value = "other" onChange={updateFilters}/>
+                            <span className="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
                 {/* Single Filter Box */}
                 <div className="single-filter-box">
                     <h3 className="filter-box-title">Filter by Brand</h3>
@@ -86,46 +110,6 @@ export default function MobileFilters({data}) {
                         }
                     </div>
                 </div>
-                {/* Single Filter Box */}
-                <div className="single-filter-box">
-                    <h3 className="filter-box-title">Filter by Charging type</h3>
-                    <div className="filters">
-                        <label className="container">ALL
-                            <input type="checkbox" checked={filters.chargingType == "all"} name="chargingType" value = "all" onChange={updateFilters}/>
-                            <span className="checkmark"></span>
-                        </label>
-                        {
-                            chargingTypes.length > 0 && chargingTypes.map((singleChargingType, index) => {
-                                return (
-                                    <label className="container">{singleChargingType} Type
-                                        <input type="checkbox" checked={filters.chargingType == singleChargingType} name="chargingType" value = {singleChargingType} onChange={updateFilters}/>
-                                        <span className="checkmark"></span>
-                                    </label>
-                                )
-                            })
-                        }
-                    </div>
-                </div>
-                {/* Single Filter Box
-                <div className="single-filter-box">
-                    <h3 className="filter-box-title">Filter by Color</h3>
-                    <div className="filters">
-                        <label className="container">ALL
-                            <input type="checkbox" checked={filters.color == "all"} name="color" value = "all" onChange={updateFilters}/>
-                            <span className="checkmark"></span>
-                        </label>
-                        {
-                            allColors.length > 0 && allColors.map((singleColor, index) => {
-                                return (
-                                    <label className="container filter-color">
-                                        <input type="checkbox" checked={filters.color == singleColor} name="color" value = {singleColor} onChange={updateFilters}/>
-                                        <span className="checkmark"></span>
-                                    </label>
-                                )
-                            })
-                        }
-                    </div>
-                </div> */}
             </form>
         </div>
     )

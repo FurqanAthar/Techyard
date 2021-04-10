@@ -2,6 +2,7 @@ import React from 'react'
 import {useParams, useHistory} from "react-router-dom";
 import ProductList from '../../components/productList';
 import {mobileContext} from '../../context/mobileContext'
+import { Link } from 'react-router-dom'
 
 export default function MobileDetailPage() {
     const {id} = useParams();
@@ -71,6 +72,7 @@ export default function MobileDetailPage() {
                     </div>
                     {/* <!-- card right --> */}
                     <div class = "product-content">
+                        <h4 className = "breadcrumbs"><Link to = '/'>Home</Link> / <Link to = '/mobiles'>Mobiles</Link> / {product.model}</h4>
                         <h1 class = "product-title">{product.model}</h1>
                         <h2 class = "product-price">Rs.{product.price}</h2>
                         <h4>Brand: {product.brand.toUpperCase()}</h4>
