@@ -100,7 +100,7 @@ export default [
             {	name: 'Awesome Black',
                 colorCode: '#000',
                 image: a52black,
-                stock: 5
+                stock: 10
             },
             {
             	name: 'Awesome Blue',

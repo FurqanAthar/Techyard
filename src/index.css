@@ -109,21 +109,16 @@ nav a {
 nav .logo {
     object-fit: cover;
 }
-nav form {
-    display: inline-block;
+nav .navLinks {
+    /* display: inline-block; */
     width: 65%;
     margin: 10px 0px;
     text-align: center;
 }
-nav form input {
+nav .navLinks {
     width: 80%;
-    background: var(--bannerBackground)!important;
     color: var(--silver)!important;
     padding: 20px!important;
-    font-family: var(--poppins);
-    font-size: 16px;
-    font-weight: 300;
-    border-radius: 25px!important;
 }
 nav .mainMenu {
     width: 15%;
@@ -400,6 +395,98 @@ nav .sidebar {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 } 
+
+/* Product Detail Page */
+.card-wrapper {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+.card-wrapper .product-imgs {
+    min-width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 30px!important;
+}
+.card-wrapper .product-content {
+    width: 60%;
+    margin: 0 0px 30px;
+}
+.card-wrapper .product-imgs .showcase-image {
+    min-width: 100%;
+    height: 500px;
+    object-fit: fill;
+    display: block;
+    background: var(--bannerBackground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+} 
+.card-wrapper .product-imgs .showcase-image img {
+    width: 100%;
+    height: 450px;
+    object-fit: contain;
+}
+.card-wrapper .product-imgs .other-images {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+.card-wrapper .product-imgs .other-images img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border: 1px solid var(--silver);
+    padding: 10px;
+    margin: 5px;
+}
+
+.card-wrapper .product-content .product-price, .complete-details .single-feature .feature-title {
+    color: var(--golden);
+}
+.card-wrapper .product-content .product-detail p, .complete-details .single-feature span {
+    color: var(--silver);
+}
+.card-wrapper .product-content .stock {
+    color: white!important;
+}
+.card-wrapper .product-content .stock-title {
+    color: var(--golden);
+}
+.card-wrapper .colors-detail {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 0px;
+}
+.card-wrapper .colors-detail .single-color-detail {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+.card-wrapper .colors-detail .colorCode-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-wrapper .colors-detail .colorCode {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: var(--mainTransition);
+}
+.card-wrapper .colors-detail .colorCode:hover {
+    transform: scale(1.2);
+}
+.single-feature {
+    margin: 10px 0px;
+}
+.single-feature div {
+    margin: 5px 20px;
+}
 
 @media screen and (max-width:767px) {
     nav .logo {
