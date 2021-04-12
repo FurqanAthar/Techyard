@@ -25,6 +25,13 @@ body {
     padding: 0px!important;
 }
 
+.d-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
 a {
     color: var(--white);
     cursor: pointer;
@@ -550,6 +557,46 @@ nav .sidebar {
 }
 .single-feature div {
     margin: 5px 20px;
+}
+
+/* Cart */
+.cart-section {
+    width: 700px;
+}
+.cart-item {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 2fr 4fr 2fr 1fr;
+  grid-column-gap: 1.5rem;
+  margin: 1.5rem 0;
+  padding: 15px 30px;
+  border: 2px solid var(--silver);
+}
+.cart-item img {
+  width: 5rem;
+}
+.cart-item .content p{
+    color: var(--golden);
+}
+.cart-item .content h4 {
+    color: var(--silver);
+}
+.item-amount {
+  text-align: center;
+  margin-bottom: 0;
+}
+.cart-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.amount-btn {
+  color: var(--primaryColor);
+  font-size: 1rem;
+}
+.remove-item-btn button{
+    font-size: 20px;
+    color: var(--golden);
 }
 
 @media screen and (max-width:767px) {

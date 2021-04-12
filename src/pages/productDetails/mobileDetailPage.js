@@ -3,11 +3,13 @@ import {useParams, useHistory} from "react-router-dom";
 import ProductList from '../../components/productList';
 import {mobileContext} from '../../context/mobileContext'
 import { Link } from 'react-router-dom'
+import {cartContext} from '../../context/CartContext'
 
 export default function MobileDetailPage() {
     const {id} = useParams();
     const history = useHistory();
     const {mobileData} = React.useContext(mobileContext)
+    const {addToCart} = React.useContext(cartContext)
     const [reviews, setReviews] = React.useState([])
     const [imageIndex, setImageIndex] = React.useState(0)
     const [featureButton, setFeatureButton] = React.useState(true)
@@ -27,6 +29,7 @@ export default function MobileDetailPage() {
                 product = single
             }
         });
+        const {model, price, colors} = product
         // getting related products
         mobileData.forEach(single => {
             if (single.brand.toLowerCase() === product.brand.toLowerCase() && countRelatedProducts <= 4) {
@@ -34,7 +37,6 @@ export default function MobileDetailPage() {
                 relatedProducts.push(single)
             }
         })
-        console.log(relatedProducts)
         // handling image to showcase
         const handleShowcase = (e) => {
             setImageIndex(parseInt(e.target.attributes.value.nodeValue))
@@ -51,6 +53,9 @@ export default function MobileDetailPage() {
                 setReviewsButton(featureButton)
                 setFeatureButton(!featureButton)
             }
+        }
+        const redirect = () => {
+            history.push('/mycart')
         }
         // getting all images
         const newImages = product.colors.map((item, index) => {return item.image})
@@ -99,7 +104,7 @@ export default function MobileDetailPage() {
                                 }
                             </div>
                         </div>
-                        <button className="btn btn-secondary">Add to Cart</button>
+                        <button className="btn btn-secondary" onClick = {() => {addToCart({id, model, price, image:colors[imageIndex].image, color:colors[imageIndex].name, which:`mobile`}); redirect()}}>Add to Cart</button>
                     </div>
                 </div>
                 <div className="complete-details section">

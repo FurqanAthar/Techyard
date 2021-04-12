@@ -77,7 +77,7 @@ export default [
         price: 14499,
         brand: 'Anker',
         features: {
-            wireless: true,
+            wireless: false,
             battery: "350mAh",
             playback: "40 hours",
             noiseCancel: "digital active noise-cancelling"            

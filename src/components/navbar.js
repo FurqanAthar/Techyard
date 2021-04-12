@@ -18,6 +18,9 @@ export default function Navbar() {
                     <li>
                         <Link to='/mobiles'>Mobiles</Link>
                     </li>
+                    <li>
+                        <Link to='/headphones'>Headphones</Link>
+                    </li>
                     {
                         !currentUser && (
                             <>
@@ -36,7 +39,7 @@ export default function Navbar() {
                     }
                 </ul>
                 <ul className="mainMenu">
-                    <li><Link to='/'><FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon></Link></li>
+                    <li><Link to='/mycart'><FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon></Link></li>
                     <li><Link to='/forgot-password'><FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Link></li>
                 </ul>
             </nav>
