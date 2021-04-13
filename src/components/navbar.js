@@ -21,6 +21,9 @@ export default function Navbar() {
                     <li>
                         <Link to='/headphones'>Headphones</Link>
                     </li>
+                    <li>
+                        <Link to='/accessories'>Accessories</Link>
+                    </li>
                     {
                         !currentUser && (
                             <>

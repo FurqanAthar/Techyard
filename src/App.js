@@ -14,6 +14,7 @@ import ForgotPassword from './pages/ForgotPassword'
 import PrivateRoute from './privateRoute'
 import MobileDetailPage from './pages/productDetails/mobileDetailPage'
 import HeadphoneDetailPage from './pages/productDetails/HeadphoneDetailPage'
+import AccessorieDetailPage from './pages/productDetails/AccessoriesDetailPage'
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
         <Route exact path="/accessories"> <Accessories/> </Route>
         <Route path="/mobiles/:id"> <MobileDetailPage/> </Route>
         <Route path="/headphones/:id"> <HeadphoneDetailPage/> </Route>
-        {/* <Route path="/laptops/:id"> <MobileDetailPage/> </Route> */}
+        <Route path="/accessories/:id"> <AccessorieDetailPage/> </Route>
         {/* <Route path="/laptops/:id"> <MobileDetailPage/> </Route> */}
         <Route path="/mycart"> <MyCart/></Route>
         <Route path="/login"><Login/></Route>

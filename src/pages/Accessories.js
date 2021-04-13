@@ -1,9 +1,26 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import Banner from '../components/banner'
+import powerbankBannerImage from '../assets/banner images/powerbank/apt100.png'
+import { powerbankContext } from '../context/powerbankContext'
+import PaginatedProducts from '../components/powerbanks/paginatedProducts'
+import PowerbankFilters from '../components/filters/powerbankFilter'
+import {getAllUnique} from '../utilityFunctions/utils'
 
 export default function Accessories() {
+    let {sortedProducts, page, changePage, capacities, brands, filters, updateFilters, clearFilters} = React.useContext(powerbankContext)
+    capacities = getAllUnique(capacities)
+    brands = getAllUnique(brands)
     return (
         <div>
-            Hello from Accessories
+            <Banner image={powerbankBannerImage} title = "ADATA" info = "Innovative, Amazing and Efficient">
+                <Link to = '/accessories' className = "btn btn-primary">Checkout!</Link>
+                <Link to = '/accessories' className = "btn btn-secondary"> Add to Cart! </Link>
+            </Banner>
+            <div className="filtration-and-products">
+                <PowerbankFilters data = {{filters, capacities, brands, updateFilters, clearFilters}}/>
+                <PaginatedProducts data = {{sortedProducts, page, changePage}}></PaginatedProducts>
+            </div>
         </div>
     )
 }

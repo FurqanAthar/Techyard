@@ -53,7 +53,7 @@ function CartProvider ({children}) {
                 return (item.id === id && item.which === which && item.color === color) ? {...item, amount: item.amount + 1} : {...item};
             }));
         }
-        else if (which == `headphone`) {
+        else if (which == `headphone` || which == `powerbank`) {
             setCart([...cart].map(item => {
                 return (item.id === id && item.which === which) ? {...item, amount: item.amount + 1} : {...item};
             }));
@@ -73,7 +73,7 @@ function CartProvider ({children}) {
                 }
             })
         }
-        else if (which == `headphone`) {
+        else if (which == `headphone` || which == `powerbank`) {
             cart.forEach(item => {
                 if (item.id === id && item.which === which) {
                     if (item.amount - 1 > 0) {
@@ -88,6 +88,7 @@ function CartProvider ({children}) {
         setCart([...newCart])
     };
     const addToCart = product => {
+        console.log(product)
         let alreadyPresent = [];
         const { which } = product
         if (which == `mobile`) {
@@ -104,7 +105,7 @@ function CartProvider ({children}) {
                 return;
             }
         }
-        else if (which == `headphone`) {
+        else if (which == `headphone` || which == `powerbank`) {
             const {id, model, price, image} = product
             alreadyPresent = [...cart].find(item => item.id === id && item.which === which)
             if (alreadyPresent) {

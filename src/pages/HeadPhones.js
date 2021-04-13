@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Banner from '../components/banner'
-import mobileBannerImage from '../assets/banner images/mobile/mobileBanner.png'
+import headphoneBannerImage from '../assets/banner images/headphone/_059plus.png'
 import {headphoneContext} from '../context/headphoneContext'
 import PaginatedProducts from '../components/headphones/paginatedProducts'
 import HeadphoneFilters from '../components/filters/headphoneFilters'
@@ -13,9 +13,9 @@ export default function HeadPhones() {
     brands = getAllUnique(brands)
     return (
         <div>
-            <Banner image={mobileBannerImage} title = "Samsung S Series" info = "Innovative, Amazing and Efficient">
-                <Link to = '/' className = "btn btn-primary">Checkout!</Link>
-                <Link to = '/' className = "btn btn-secondary"> Add to Cart! </Link>
+            <Banner image={headphoneBannerImage} title = "MPOW" info = "Innovative, Amazing and Efficient">
+                <Link to = '/accessories' className = "btn btn-primary">Checkout!</Link>
+                <Link to = '/accessories' className = "btn btn-secondary"> Add to Cart! </Link>
             </Banner>
             <div className="filtration-and-products">
                 <HeadphoneFilters data = {{filters, batterys, brands, updateFilters, clearFilters}}/>

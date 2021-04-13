@@ -5,6 +5,7 @@ import HeadphoneSingleProductCart from '../components/cart/HeadphoneSingleProduc
 import { cartContext } from '../context/CartContext'
 import { useAuth } from '../context/authContext'
 import { useHistory } from 'react-router-dom'
+import {firestore} from '../firebase'
 
 export default function MyCart() {
     const {cart, total} = React.useContext(cartContext)
@@ -14,6 +15,22 @@ export default function MyCart() {
     const redirect = (link) => {
         history.push(link)
     }
+
+    const submitOrder = () => {
+        firestore.collection('orders').add({
+            userId: currentUser.uid,
+            data: cart
+        })
+    }
+
+    const getOrder = () => {
+        firestore.collection('orders').get().then((data) => {
+            data.forEach((doc) => {
+                console.log(doc.id, " => ", doc.data())
+            })
+        })
+    }
+
     return (
         <div className="section d-flex">
             <div className="cart-section">
@@ -28,7 +45,7 @@ export default function MyCart() {
                                     if (item.which == `mobile`) {
                                         return <SingleProductCart data = {item} key={index}/>
                                     }
-                                    else if (item.which == `headphone`) {
+                                    else if (item.which == `headphone` || item.which == `powerbank`) {
                                         return <HeadphoneSingleProductCart data = {item} key = {index}></HeadphoneSingleProductCart>
                                     }
                                 })
@@ -39,7 +56,7 @@ export default function MyCart() {
                                 !currentUser ? (
                                     <button className="btn btn-secondary" onClick = {() => redirect('/login')}>Login to Checkout!</button>
                                 ) : (
-                                    <button className="btn btn-secondary">Place Order!</button>
+                                    <button className="btn btn-secondary" onClick={submitOrder}>Place Order!</button>
                                 )
                             }
                         </div>
