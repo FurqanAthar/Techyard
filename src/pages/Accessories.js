@@ -13,9 +13,9 @@ export default function Accessories() {
     brands = getAllUnique(brands)
     return (
         <div>
-            <Banner image={powerbankBannerImage} title = "ADATA" info = "Innovative, Amazing and Efficient">
-                <Link to = '/accessories' className = "btn btn-primary">Checkout!</Link>
-                <Link to = '/accessories' className = "btn btn-secondary"> Add to Cart! </Link>
+            <Banner image={powerbankBannerImage} title = "Compare Powerbanks" info = "Compare, Select and Buy...">
+                <Link to = '/powerbankcomparison' className = "btn btn-primary">Checkout!</Link>
+                <Link to = '/powerbankcomparison' className = "btn btn-secondary"> Add to Cart! </Link>
             </Banner>
             <div className="filtration-and-products">
                 <PowerbankFilters data = {{filters, capacities, brands, updateFilters, clearFilters}}/>

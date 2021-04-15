@@ -15,6 +15,9 @@ import PrivateRoute from './privateRoute'
 import MobileDetailPage from './pages/productDetails/mobileDetailPage'
 import HeadphoneDetailPage from './pages/productDetails/HeadphoneDetailPage'
 import AccessorieDetailPage from './pages/productDetails/AccessoriesDetailPage'
+import MobileComparison from './pages/comparisonPages/mobileComparison'
+import HeadphoneComparison from './pages/comparisonPages/HeadphoneComparison'
+import PowerbankComparison from './pages/comparisonPages/PowerbankComparison'
 
 function App() {
   return (
@@ -30,6 +33,9 @@ function App() {
         <Route path="/headphones/:id"> <HeadphoneDetailPage/> </Route>
         <Route path="/accessories/:id"> <AccessorieDetailPage/> </Route>
         {/* <Route path="/laptops/:id"> <MobileDetailPage/> </Route> */}
+        <Route path="/mobilecomparison"><MobileComparison/></Route>
+        <Route path="/headphonecomparison"><HeadphoneComparison/></Route>
+        <Route path="/powerbankcomparison"><PowerbankComparison/></Route>
         <Route path="/mycart"> <MyCart/></Route>
         <Route path="/login"><Login/></Route>
         <Route path="/signup"><Signup/></Route>

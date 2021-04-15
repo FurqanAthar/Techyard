@@ -17,9 +17,9 @@ export default function Mobiles() {
     brands = getAllUnique(brands)
     return (
         <div>
-            <Banner image={mobileBannerImage} title = "Samsung S Series" info = "Innovative, Amazing and Efficient">
-                <Link to = '/' className = "btn btn-primary">Checkout!</Link>
-                <Link to = '/' className = "btn btn-secondary"> Add to Cart! </Link>
+            <Banner image={mobileBannerImage} title = "Compare Mobile Phones" info = "Get Ideas about how you want your next phone to be!">
+                <Link to = '/mobilecomparison' className = "btn btn-primary">Compare!</Link>
+                <Link to = '/mobilecomparison' className = "btn btn-secondary"> Checkout! </Link>
             </Banner>
             <div className="filtration-and-products">
                 <MobileFilters data = {{filters, roms, rams, allColors, batterys, chargingTypes, brands, updateFilters, clearFilters}}/>

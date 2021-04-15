@@ -13,9 +13,9 @@ export default function HeadPhones() {
     brands = getAllUnique(brands)
     return (
         <div>
-            <Banner image={headphoneBannerImage} title = "MPOW" info = "Innovative, Amazing and Efficient">
-                <Link to = '/accessories' className = "btn btn-primary">Checkout!</Link>
-                <Link to = '/accessories' className = "btn btn-secondary"> Add to Cart! </Link>
+            <Banner image={headphoneBannerImage} title = "Compare Headphones" info = "Innovative, Amazing and Efficient">
+                <Link to = '/headphonecomparison' className = "btn btn-primary">Checkout!</Link>
+                <Link to = '/headphonecomparison' className = "btn btn-secondary"> Add to Cart! </Link>
             </Banner>
             <div className="filtration-and-products">
                 <HeadphoneFilters data = {{filters, batterys, brands, updateFilters, clearFilters}}/>

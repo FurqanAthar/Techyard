@@ -19,3 +19,10 @@ export function getAllUnique(a) {
     }
     return unique
 }
+
+export function getAllTitles(comparisonProducts){
+        let titles = comparisonProducts.map(single => {
+            return single.model;
+        })
+        return titles;
+    }
