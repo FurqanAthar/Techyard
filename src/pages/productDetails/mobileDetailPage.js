@@ -1,23 +1,24 @@
 import React from 'react'
+import { Alert } from "react-bootstrap"
+import { Link } from 'react-router-dom'
+import {cartContext} from '../../context/CartContext'
 import {useParams, useHistory} from "react-router-dom";
 import ProductList from '../../components/productList';
 import {mobileContext} from '../../context/mobileContext'
-import { Link } from 'react-router-dom'
-import {cartContext} from '../../context/CartContext'
 
 export default function MobileDetailPage() {
-    const {id} = useParams();
-    const history = useHistory();
+    const [reviewsButton, setReviewsButton] = React.useState(false)
+    const [featureButton, setFeatureButton] = React.useState(true)
+    const [imageIndex, setImageIndex] = React.useState(0)
     const {mobileData} = React.useContext(mobileContext)
     const {addToCart} = React.useContext(cartContext)
     const [reviews, setReviews] = React.useState([])
-    const [imageIndex, setImageIndex] = React.useState(0)
-    const [featureButton, setFeatureButton] = React.useState(true)
-    const [reviewsButton, setReviewsButton] = React.useState(false)
-    const [images, setImages] = React.useState([])
-    let product = {}
-    let relatedProducts = []
+    const [error, setError] = React.useState(false)
+    const history = useHistory();
+    const {id} = useParams();
     let countRelatedProducts = 0
+    let relatedProducts = []
+    let product = {}
     
     if (mobileData.length === 0) {
         return <h1>Loading...</h1>
@@ -56,6 +57,16 @@ export default function MobileDetailPage() {
         }
         const redirect = () => {
             history.push('/mycart')
+        }
+        const checkStock = () => {
+            if (product.colors[imageIndex].stock > 0) {
+                addToCart({id, model, price, image:colors[imageIndex].image, color:colors[imageIndex].name, which:`mobile`})
+                redirect()
+            }
+            else {
+                setError(true)
+                setTimeout(() => setError(false), 3000)
+            }
         }
         // getting all images
         const newImages = product.colors.map((item, index) => {return item.image})
@@ -104,7 +115,10 @@ export default function MobileDetailPage() {
                                 }
                             </div>
                         </div>
-                        <button className="btn btn-secondary" onClick = {() => {addToCart({id, model, price, image:colors[imageIndex].image, color:colors[imageIndex].name, which:`mobile`}); redirect()}}>Add to Cart</button>
+                        {
+                            error && <Alert variant="danger">Out of Stock!</Alert>
+                        }
+                        <button className="btn btn-secondary" onClick = {checkStock}>Add to Cart</button>
                     </div>
                 </div>
                 <div className="complete-details section">

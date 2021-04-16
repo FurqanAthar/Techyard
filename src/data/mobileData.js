@@ -58,7 +58,7 @@ export default [
             {	name: 'Midnight Black',
                 colorCode: '#000',
                 image: s9black,
-                stock: 5
+                stock: 0
             },
             {
             	name: 'Coral Blue',

@@ -7,6 +7,9 @@ import Mobiles from './pages/Mobiles'
 import Laptops from './pages/Laptops'
 import HeadPhones from './pages/HeadPhones'
 import Accessories from './pages/Accessories'
+import Coupons from './admin/pages/Coupons'
+import AddCoupons from './admin/pages/addCoupons'
+import EditCoupon from './admin/pages/EditCoupon'
 import MyCart from './pages/MyCart'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
@@ -36,6 +39,9 @@ function App() {
         <Route path="/mobilecomparison"><MobileComparison/></Route>
         <Route path="/headphonecomparison"><HeadphoneComparison/></Route>
         <Route path="/powerbankcomparison"><PowerbankComparison/></Route>
+        <Route path="/coupons"><Coupons/></Route>
+        <Route path="/addcoupon"><AddCoupons/></Route>
+        <Route path="/editcoupon/:id"><EditCoupon/></Route>
         <Route path="/mycart"> <MyCart/></Route>
         <Route path="/login"><Login/></Route>
         <Route path="/signup"><Signup/></Route>

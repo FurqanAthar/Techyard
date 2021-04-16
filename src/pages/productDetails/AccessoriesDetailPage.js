@@ -1,21 +1,23 @@
 import React from 'react'
-import {useParams, useHistory} from "react-router-dom";
-import ProductList from '../../components/powerbanks/productList';
-import {powerbankContext} from '../../context/powerbankContext'
+import { Alert } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 import {cartContext} from '../../context/CartContext'
+import {useParams, useHistory} from "react-router-dom";
+import {powerbankContext} from '../../context/powerbankContext'
+import ProductList from '../../components/powerbanks/productList';
 
 export default function AccessorieDetailPage() {
-    const {id} = useParams();
-    const history = useHistory();
+    const [reviewsButton, setReviewsButton] = React.useState(false)
+    const [featureButton, setFeatureButton] = React.useState(true)
     const {powerbankData} = React.useContext(powerbankContext)
     const {addToCart} = React.useContext(cartContext)
     const [reviews, setReviews] = React.useState([])
-    const [featureButton, setFeatureButton] = React.useState(true)
-    const [reviewsButton, setReviewsButton] = React.useState(false)
-    let product = {}
-    let relatedProducts = []
+    const [error, setError] = React.useState(false)
+    const history = useHistory();
+    const {id} = useParams();
     let countRelatedProducts = 0
+    let relatedProducts = []
+    let product = {}
     
     if (powerbankData.length === 0) {
         return <h1>Loading...</h1>
@@ -51,6 +53,16 @@ export default function AccessorieDetailPage() {
         const redirect = () => {
             history.push('/mycart')
         }
+        const checkStock = () => {
+            if (product.stock > 0) {
+                addToCart({id, model, price, image, which:`powerbank`})
+                redirect()
+            }
+            else {
+                setError(true)
+                setTimeout(() => setError(false), 3000)
+            }
+        }
         return (
             <div>
                 <div class = "card-wrapper section">
@@ -75,7 +87,10 @@ export default function AccessorieDetailPage() {
                                 {stock}
                             </p>
                         </div>
-                        <button className="btn btn-secondary" onClick = {() => {addToCart({id, model, price, image, which:`powerbank`}); redirect()}}>Add to Cart</button>
+                        {
+                            error && <Alert variant="danger">Out of Stock!</Alert>
+                        }
+                        <button className="btn btn-secondary" onClick = {checkStock}>Add to Cart</button>
                     </div>
                 </div>
                 <div className="complete-details section">

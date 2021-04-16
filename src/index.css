@@ -710,6 +710,32 @@ nav .sidebar {
     text-transform:uppercase;
 }
 
+/* coupons */
+.coupon-card {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 4fr 4fr 1fr;
+  grid-column-gap: 1.5rem;
+  margin: 1.5rem 0;
+  padding: 15px 30px;
+  border: 2px solid var(--silver);
+}
+.coupon-buttons {
+    text-align: center;
+}
+.coupon-content p {
+    margin: 5px 0;
+    color: var(--golden)
+}
+.coupon-content span {
+    color: var(--white);
+}
+.discounted-price {
+    color: var(--golden);
+}
+.discounted-price span {
+    color: var(--silver);
+}
 
 @media screen and (max-width:767px) {
     nav .logo {

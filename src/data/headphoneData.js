@@ -26,7 +26,7 @@ export default [
     },
     {
         id: 2,
-        stock: 10,
+        stock: 0,
         model: "TT-BH055",
         description: "Taotronics SoundSurge 55 brings you the magic of Active Noise Cancellation is it’s budget range of Bluetooth Headphones. Featuring 3 Unique ANC Modes, upgraded for the 2020 Edition.",
         price: 12999,
