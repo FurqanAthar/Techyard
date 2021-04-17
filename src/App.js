@@ -10,6 +10,7 @@ import Accessories from './pages/Accessories'
 import Coupons from './admin/pages/Coupons'
 import AddCoupons from './admin/pages/addCoupons'
 import EditCoupon from './admin/pages/EditCoupon'
+import AddMobile from './admin/pages/addMobile/AddMobile'
 import MyCart from './pages/MyCart'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
@@ -42,6 +43,7 @@ function App() {
         <Route path="/coupons"><Coupons/></Route>
         <Route path="/addcoupon"><AddCoupons/></Route>
         <Route path="/editcoupon/:id"><EditCoupon/></Route>
+        <Route path="/addmobile"><AddMobile/></Route>
         <Route path="/mycart"> <MyCart/></Route>
         <Route path="/login"><Login/></Route>
         <Route path="/signup"><Signup/></Route>

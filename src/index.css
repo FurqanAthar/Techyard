@@ -737,6 +737,31 @@ nav .sidebar {
     color: var(--silver);
 }
 
+/* Add Product */
+.addproduct-container {
+    width: 80%;
+    text-align: center;
+}
+.addproduct-container span {
+    justify-content: center;
+}
+.addproduct-container form {
+    width: 100%;
+}
+.addproduct-container form label {
+    width: 48%;
+    margin: 10px;
+    text-align: center;
+    color: var(--silver);
+    display: inline-block;
+}
+.addproduct-container input {
+    margin: 10px;
+    padding: 20px;
+    width: 100%;
+    display: block;
+}
+
 @media screen and (max-width:767px) {
     nav .logo {
         width: 25%;
