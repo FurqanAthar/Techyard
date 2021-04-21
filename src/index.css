@@ -220,7 +220,7 @@ nav .sidebar {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40%;
+    width: 30%;
     margin: 15px;
     height: 250px;
     border: 2px solid var(--golden);
@@ -760,6 +760,24 @@ nav .sidebar {
     padding: 20px;
     width: 100%;
     display: block;
+}
+
+/* Super Admin */
+.subadmin-card {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 3fr 1fr;
+    grid-column-gap: 1.5rem;
+    margin: 1.5rem 0;
+    padding: 20px 30px;
+    border: 2px solid var(--silver);
+}
+.subadmin-card p {
+    color: var(--golden);
+    margin: 0;
+}
+.subadmin-card span {
+    color: var(--silver);
 }
 
 @media screen and (max-width:767px) {

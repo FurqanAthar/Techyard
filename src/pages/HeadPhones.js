@@ -6,6 +6,7 @@ import {headphoneContext} from '../context/headphoneContext'
 import PaginatedProducts from '../components/headphones/paginatedProducts'
 import HeadphoneFilters from '../components/filters/headphoneFilters'
 import {getAllUnique} from '../utilityFunctions/utils'
+import Navbar from '../components/navbar'
 
 export default function HeadPhones() {
     let {sortedProducts, page, changePage, batterys, brands, filters, updateFilters, clearFilters} = React.useContext(headphoneContext)
@@ -13,6 +14,7 @@ export default function HeadPhones() {
     brands = getAllUnique(brands)
     return (
         <div>
+            <Navbar/>
             <Banner image={headphoneBannerImage} title = "Compare Headphones" info = "Innovative, Amazing and Efficient">
                 <Link to = '/headphonecomparison' className = "btn btn-primary">Checkout!</Link>
                 <Link to = '/headphonecomparison' className = "btn btn-secondary"> Add to Cart! </Link>

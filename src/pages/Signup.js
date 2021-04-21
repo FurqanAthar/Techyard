@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../context/authContext"
 import { Link, useHistory } from "react-router-dom"
+import Navbar from '../components/navbar'
 
 export default function Signup() {
   const emailRef = useRef()
@@ -33,6 +34,8 @@ export default function Signup() {
   }
 
   return (
+    <>
+      <Navbar/>
       <div className="signup"> 
         {
             currentUser && history.push('/forgot-password')
@@ -65,6 +68,7 @@ export default function Signup() {
             Already have an account? <Link to="/login">Log In</Link>
         </div>
         </div>
-    </div>
+      </div>
+    </>
   )
 }

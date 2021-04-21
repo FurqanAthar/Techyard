@@ -5,6 +5,7 @@ import {cartContext} from '../../context/CartContext'
 import {useParams, useHistory} from "react-router-dom";
 import ProductList from '../../components/productList';
 import {mobileContext} from '../../context/mobileContext'
+import Navbar from '../../components/navbar'
 
 export default function MobileDetailPage() {
     const [reviewsButton, setReviewsButton] = React.useState(false)
@@ -72,6 +73,7 @@ export default function MobileDetailPage() {
         const newImages = product.colors.map((item, index) => {return item.image})
         return (
             <div>
+                <Navbar/>
                 <div class = "card-wrapper section">
                     {/* <!-- card left --> */}
                     <div class = "product-imgs">

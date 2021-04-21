@@ -9,6 +9,7 @@ import {applyDiscount} from '../utilityFunctions/utils'
 import {couponContext} from '../admin/context/couponsContext'
 import SingleProductCart from '../components/cart/SingleProductCart'
 import HeadphoneSingleProductCart from '../components/cart/HeadphoneSingleProductCart'
+import Navbar from '../components/navbar'
 
 export default function MyCart() {
     const {cart, total, emptyCart} = React.useContext(cartContext)
@@ -60,52 +61,55 @@ export default function MyCart() {
     }
 
     return (
-        <div className="section d-flex">
-            <div className="cart-section">
-                {
-                    cart.length === 0  && <EmptyCart/>
-                }
-                {
-                    cart.length > 0 && (
-                        <div>
-                            {
-                                cart.map((item, index) => {
-                                    if (item.which == `mobile`) {
-                                        return <SingleProductCart data = {item} key={index}/>
-                                    }
-                                    else if (item.which == `headphone` || item.which == `powerbank`) {
-                                        return <HeadphoneSingleProductCart data = {item} key = {index}></HeadphoneSingleProductCart>
-                                    }
-                                })
-                            }
-                            <p>Total</p>
-                            {
-                                discountedPrice > 0 && <h2 className="discounted-price">Discounted Price: <span>Rs.{discountedPrice}</span></h2> 
-                            }
-                            <h3>Rs.{total}</h3>
-                            {
-                                error && <Alert variant="danger">Invalid Coupon</Alert>
-                            }
-                            <div className="signup">
-                                <form className="signup-container" onSubmit={(e) => applyCoupon(e)}>
-                                    <label>
-                                        Coupon
-                                        <input type="text" ref={couponRef}/>
-                                    </label>
-                                    <button className="btn btn-secondary">Apply Coupon!</button>
-                                </form>
+        <>
+            <Navbar/>
+            <div className="section d-flex">
+                <div className="cart-section">
+                    {
+                        cart.length === 0  && <EmptyCart/>
+                    }
+                    {
+                        cart.length > 0 && (
+                            <div>
+                                {
+                                    cart.map((item, index) => {
+                                        if (item.which == `mobile`) {
+                                            return <SingleProductCart data = {item} key={index}/>
+                                        }
+                                        else if (item.which == `headphone` || item.which == `powerbank`) {
+                                            return <HeadphoneSingleProductCart data = {item} key = {index}></HeadphoneSingleProductCart>
+                                        }
+                                    })
+                                }
+                                <p>Total</p>
+                                {
+                                    discountedPrice > 0 && <h2 className="discounted-price">Discounted Price: <span>Rs.{discountedPrice}</span></h2> 
+                                }
+                                <h3>Rs.{total}</h3>
+                                {
+                                    error && <Alert variant="danger">Invalid Coupon</Alert>
+                                }
+                                <div className="signup">
+                                    <form className="signup-container" onSubmit={(e) => applyCoupon(e)}>
+                                        <label>
+                                            Coupon
+                                            <input type="text" ref={couponRef}/>
+                                        </label>
+                                        <button className="btn btn-secondary">Apply Coupon!</button>
+                                    </form>
+                                </div>
+                                {
+                                    !currentUser ? (
+                                        <button className="btn btn-secondary" onClick = {() => redirect('/login')}>Login to Checkout!</button>
+                                    ) : (
+                                        <button className="btn btn-secondary" onClick={submitOrder}>Place Order!</button>
+                                    )
+                                }
                             </div>
-                            {
-                                !currentUser ? (
-                                    <button className="btn btn-secondary" onClick = {() => redirect('/login')}>Login to Checkout!</button>
-                                ) : (
-                                    <button className="btn btn-secondary" onClick={submitOrder}>Place Order!</button>
-                                )
-                            }
-                        </div>
-                    )
-                }
+                        )
+                    }
+                </div>
             </div>
-        </div>
+        </>
     )
 }

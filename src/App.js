@@ -1,24 +1,54 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-// Pages
+
+// Home Pages
 import Home from './pages/Home'
+import Dashboard from './admin/pages/Dashboard'
+import SuperAdminDashboard from './admin/pages/SuperAdminDashboard'
+// Navbars
 import Navbar from './components/navbar'
+import AdminNavbar from './admin/components/AdminNavbar'
+// Display Pages
 import Mobiles from './pages/Mobiles'
 import Laptops from './pages/Laptops'
 import HeadPhones from './pages/HeadPhones'
 import Accessories from './pages/Accessories'
+// ---------------------------------------  Sub Admin  --------------------------------------
+// Login
+import SubAdminLogin from './admin/pages/LoginSignup/SubAdminLogin'
+// Add Coupons
 import Coupons from './admin/pages/Coupons'
 import AddCoupons from './admin/pages/addCoupons'
 import EditCoupon from './admin/pages/EditCoupon'
+// Add Mobile
+import AdminMobile from './admin/pages/addMobile/AdminMobile'
 import AddMobile from './admin/pages/addMobile/AddMobile'
+import EditMobile from './admin/pages/addMobile/EditMobile';
+// Add Heaphone
+import AdminHeadphone from './admin/pages/addHeadphone/AdminHeadphone';
+import AddHeadphone from './admin/pages/addHeadphone/AddHeadphone'
+import EditHeadphone from './admin/pages/addHeadphone/EditHeadphone'
+// Add Powerbank
+import AddPowerbank from './admin/pages/addPowerbank/AddPowerbank'
+import AdminPowerbank from './admin/pages/addPowerbank/AdminPowerbank'
+import EditPowerbank from './admin/pages/addPowerbank/EditPowerbank'
+// Cart => Login Signup
 import MyCart from './pages/MyCart'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
 import ForgotPassword from './pages/ForgotPassword'
-import PrivateRoute from './privateRoute'
+// Private Routes
+import PrivateRoute from './privateRoutes/privateRoute'
+import SuperAdminPrivateRoute from './privateRoutes/SuperAdminPrivateRoute'
+import SubAdminPrivateRoute from './privateRoutes/SubAdminPrivateRoute'
+// Admin Login Signup
+import SuperAdminLogin from './admin/pages/LoginSignup/SuperAdminLogin'
+import SubAdminUpdatePassword from './admin/pages/LoginSignup/SubAdminUpdatePassword'
+// Details Page
 import MobileDetailPage from './pages/productDetails/mobileDetailPage'
 import HeadphoneDetailPage from './pages/productDetails/HeadphoneDetailPage'
 import AccessorieDetailPage from './pages/productDetails/AccessoriesDetailPage'
+// Comparison Page
 import MobileComparison from './pages/comparisonPages/mobileComparison'
 import HeadphoneComparison from './pages/comparisonPages/HeadphoneComparison'
 import PowerbankComparison from './pages/comparisonPages/PowerbankComparison'
@@ -26,28 +56,52 @@ import PowerbankComparison from './pages/comparisonPages/PowerbankComparison'
 function App() {
   return (
     <Router>
-      <Navbar/>
       <Switch>
+        {/* --------------------------------------  Client Side -----------------------------------*/}
+        {/* Display Pages */}
         <Route exact path="/"> <Home/> </Route>
         <Route exact path="/mobiles"> <Mobiles/> </Route>
-        <Route exact path="/laptops"> <Laptops/> </Route>
         <Route exact path="/headphones"> <HeadPhones/> </Route>
         <Route exact path="/accessories"> <Accessories/> </Route>
+        {/* Detail Page */}
         <Route path="/mobiles/:id"> <MobileDetailPage/> </Route>
         <Route path="/headphones/:id"> <HeadphoneDetailPage/> </Route>
         <Route path="/accessories/:id"> <AccessorieDetailPage/> </Route>
-        {/* <Route path="/laptops/:id"> <MobileDetailPage/> </Route> */}
+        {/* Comparison Page */}
         <Route path="/mobilecomparison"><MobileComparison/></Route>
         <Route path="/headphonecomparison"><HeadphoneComparison/></Route>
         <Route path="/powerbankcomparison"><PowerbankComparison/></Route>
-        <Route path="/coupons"><Coupons/></Route>
-        <Route path="/addcoupon"><AddCoupons/></Route>
-        <Route path="/editcoupon/:id"><EditCoupon/></Route>
-        <Route path="/addmobile"><AddMobile/></Route>
+        {/* Cart => Login Signup */}
         <Route path="/mycart"> <MyCart/></Route>
         <Route path="/login"><Login/></Route>
         <Route path="/signup"><Signup/></Route>
         <Route path="/forgot-password"><ForgotPassword/></Route>
+        
+        {/* --------------------------------------  Admin Side -----------------------------------*/}
+        <Route path="/subadminlogin"><SubAdminLogin/></Route>
+        <SubAdminPrivateRoute path="/admindashboard"><Dashboard/></SubAdminPrivateRoute>
+        <SubAdminPrivateRoute path="/subadminupdatepassword"><SubAdminUpdatePassword/></SubAdminPrivateRoute>
+        {/* Add Coupon */}
+        <SubAdminPrivateRoute path="/coupons"><Coupons/></SubAdminPrivateRoute>
+        <SubAdminPrivateRoute path="/addcoupon"><AddCoupons/></SubAdminPrivateRoute>
+        <SubAdminPrivateRoute path="/editcoupon/:id"><EditCoupon/></SubAdminPrivateRoute>
+        {/* Add Mobile */}
+        <SubAdminPrivateRoute path="/adminmobile"><AdminMobile/></SubAdminPrivateRoute>
+        <SubAdminPrivateRoute path="/addmobile"><AddMobile/></SubAdminPrivateRoute>
+        <SubAdminPrivateRoute path="/editmobile/:id"><EditMobile/></SubAdminPrivateRoute>
+        {/* Add Headphone */}
+        <SubAdminPrivateRoute path="/adminheadphone"><AdminHeadphone/></SubAdminPrivateRoute>
+        <SubAdminPrivateRoute path="/addheadphone"><AddHeadphone/></SubAdminPrivateRoute>
+        <SubAdminPrivateRoute path="/editheadphone/:id"><EditHeadphone/></SubAdminPrivateRoute>
+        {/* Add Powerbank */}
+        <SubAdminPrivateRoute path="/adminpowerbank"><AdminPowerbank/></SubAdminPrivateRoute>
+        <SubAdminPrivateRoute path="/addpowerbank"><AddPowerbank/></SubAdminPrivateRoute>
+        <SubAdminPrivateRoute path="/editpowerbank/:id"><EditPowerbank/></SubAdminPrivateRoute>
+        {/* Super Admin */}
+        <Route path="/superadminlogin"><SuperAdminLogin/></Route>
+        <SuperAdminPrivateRoute path="/superadmindashboard" name="private"> <SuperAdminDashboard/> </SuperAdminPrivateRoute>
+
+
       </Switch>
     </Router>
   );

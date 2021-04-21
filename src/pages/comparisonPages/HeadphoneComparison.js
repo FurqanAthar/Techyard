@@ -1,4 +1,5 @@
 import React from 'react'
+import Navbar from '../../components/navbar'
 import {headphoneComparisonContext} from "../../context/comparisonContexts/headphoneComparisonContext";
 import HeadphoneComparisonComponent from "../../components/comparisonComponents/HeadphoneComparisonComponent";
 import EmptySelection from '../../components/comparisonComponents/emptySelection'
@@ -7,6 +8,7 @@ export default function HeadphoneComparison() {
     const {productTitles, handleSelection, product1ToCompare, product2ToCompare} = React.useContext(headphoneComparisonContext);
     return (
         <>
+            <Navbar/>
             <div className="grid-layout">
                 <div className="grid1">
                     <form className="form2">

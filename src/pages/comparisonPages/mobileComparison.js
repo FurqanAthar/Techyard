@@ -1,4 +1,5 @@
 import React from 'react'
+import Navbar from '../../components/navbar'
 import {mobileComparisonContext} from "../../context/comparisonContexts/mobileComparisonContext";
 import MobileCompareProducts from "../../components/comparisonComponents/mobileComparisonComponent";
 import EmptySelection from '../../components/comparisonComponents/emptySelection'
@@ -7,6 +8,7 @@ export default function MobileComparison() {
     const {productTitles, comparisonProducts, handleSelection, product1ToCompare, product2ToCompare} = React.useContext(mobileComparisonContext);
     return (
         <>
+            <Navbar/>
             <div className="grid-layout">
                 <div className="grid1">
                     <form className="form2">

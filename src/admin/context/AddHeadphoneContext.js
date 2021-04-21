@@ -1,30 +1,29 @@
 import React from 'react'
 import {firestore, storage} from '../../firebase'
 
-export const addMobileContext = React.createContext()
+export const addHeadphoneContext = React.createContext()
 
-export default function AddMobileContextProvider({children}) {
-    const [mobileData, setMobileData] = React.useState([])
+export default function AddHeadphoneContextProvider({children}) {
+    const [headphoneData, setHeadphoneData] = React.useState([])
     const [loading,setLoading] = React.useState(false)
     const [success, setSuccess] = React.useState(false)
-    let copyData = []
     
     React.useEffect(()=>{
-        let mobiles = []
-        firestore.collection('mobiles').get().then((data) => {
+        let headphones = []
+        firestore.collection('headphones').get().then((data) => {
             var obj={}
             let i=0;
             data.forEach((doc) => {
                 obj={id:doc.id,...doc.data()}
-                mobiles[i]=obj
+                headphones[i]=obj
                 i++;
             })
-            setMobileData([...mobiles])
+            setHeadphoneData([...headphones])
         }) 
     },[loading])
 
-    const addMobile = (data) => {
-        return firestore.collection('mobiles').add(data).then(()=> {
+    const addHeadphone = (data) => {
+        return firestore.collection('headphones').add(data).then(()=> {
             setLoading(!loading)
             setSuccess(true)
             setTimeout(() => {
@@ -33,8 +32,8 @@ export default function AddMobileContextProvider({children}) {
         }).catch((error) => console.log(error))
     }
 
-    const removeMobile = async (id) => {
-        const m = await firestore.collection('mobiles').doc(id).delete()
+    const removeHeadphone = async (id) => {
+        const m = await firestore.collection('headphones').doc(id).delete()
         setLoading((prev) => !prev)
         setSuccess(true)
         setTimeout(() => {
@@ -42,8 +41,8 @@ export default function AddMobileContextProvider({children}) {
         }, 3000);
     }
 
-    const editMobile = async (p, i) => {
-        await firestore.collection('mobiles').doc(i).update({...p})
+    const editHeadphone = async (p, i) => {
+        await firestore.collection('headphones').doc(i).update({...p})
         setSuccess(true)
         setTimeout(() => {
             setSuccess(false)
@@ -51,8 +50,8 @@ export default function AddMobileContextProvider({children}) {
         setLoading(!loading)
     }
     return (
-        <addMobileContext.Provider value = {{addMobile, mobileData, removeMobile, success, loading, editMobile}}>
+        <addHeadphoneContext.Provider value = {{addHeadphone, headphoneData, removeHeadphone, success, loading, editHeadphone}}>
             {children}
-        </addMobileContext.Provider>
+        </addHeadphoneContext.Provider>
     )
 }

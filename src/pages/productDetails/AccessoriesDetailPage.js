@@ -5,6 +5,7 @@ import {cartContext} from '../../context/CartContext'
 import {useParams, useHistory} from "react-router-dom";
 import {powerbankContext} from '../../context/powerbankContext'
 import ProductList from '../../components/powerbanks/productList';
+import Navbar from '../../components/navbar'
 
 export default function AccessorieDetailPage() {
     const [reviewsButton, setReviewsButton] = React.useState(false)
@@ -65,6 +66,7 @@ export default function AccessorieDetailPage() {
         }
         return (
             <div>
+                <Navbar/>
                 <div class = "card-wrapper section">
                     {/* <!-- card left --> */}
                     <div class = "product-imgs">

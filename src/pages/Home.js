@@ -5,6 +5,7 @@ import bannerImage from '../assets/banner images/home/homebanner.png'
 import MobileContextProvider, { mobileContext } from '../context/mobileContext'
 import ProductList from '../components/productList'
 import SmallBannerCards from '../components/SmallBannerCards'
+import Navbar from '../components/navbar'
 
 export default function Home() {
     const {mobileData} = React.useContext(mobileContext)
@@ -15,6 +16,7 @@ export default function Home() {
     }
     return (
         <div>
+            <Navbar/>
             <Banner image={bannerImage} title = "Samsung S21" info = "The Samsung Galaxy S21 is a series of Android-based smartphones designed, developed, marketed, and manufactured by Samsung Electronics as part of its Galaxy S series.">
                 <Link to = '/mobiles' className = "btn btn-primary"> See All! </Link>
                 <Link to = '/mobiles' className = "btn btn-secondary"> Know More! </Link>

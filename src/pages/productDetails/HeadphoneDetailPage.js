@@ -5,6 +5,7 @@ import {cartContext} from '../../context/CartContext'
 import {useParams, useHistory} from "react-router-dom";
 import {headphoneContext} from '../../context/headphoneContext'
 import ProductList from '../../components/headphones/productList';
+import Navbar from '../../components/navbar'
 
 export default function HeadphoneDetailPage() {
     const [reviewsButton, setReviewsButton] = React.useState(false)
@@ -65,6 +66,7 @@ export default function HeadphoneDetailPage() {
         }
         return (
             <div>
+                <Navbar/>
                 <div class = "card-wrapper section">
                     {/* <!-- card left --> */}
                     <div class = "product-imgs">

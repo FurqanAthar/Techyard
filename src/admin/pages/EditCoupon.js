@@ -1,5 +1,6 @@
 import React from 'react'
 import {Alert} from 'react-bootstrap'
+import AdminNavbar from '../components/AdminNavbar'
 import {useHistory, useParams} from 'react-router-dom'
 import {couponContext} from '../context/couponsContext'
 
@@ -36,26 +37,36 @@ export default function EditCoupon() {
         }
         
         return (
-            <div className="signup">
-                <div className="signup-container">
-                    <form onSubmit={handleSubmit}>
-                        <label>
-                            Edit Code
-                            <input type="text" value={coupon.code} onChange={onchangeCode} required/>
-                        </label>
-                        <label>
-                            Edit Discount
-                            <input type="number" value={coupon.discount} onChange={onchangeDiscount} required/>
-                        </label>
-                        <button className="btn btn-secondary">Confirm Edit</button>
-                    </form>
+            <>
+                <AdminNavbar/>
+                <div className="section">
+                    <button className="btn btn-primary" onClick={() => history.push('/coupons')}>All Coupons</button>
+                    <button className="btn btn-primary" onClick={() => history.push('/addcoupon')}>Add Coupon</button>
                 </div>
-            </div>
+                <div className="signup">
+                    <div className="signup-container">
+                        <form onSubmit={handleSubmit}>
+                            <label>
+                                Edit Code
+                                <input type="text" value={coupon.code} onChange={onchangeCode} required/>
+                            </label>
+                            <label>
+                                Edit Discount
+                                <input type="number" value={coupon.discount} onChange={onchangeDiscount} required/>
+                            </label>
+                            <button className="btn btn-secondary">Confirm Edit</button>
+                        </form>
+                    </div>
+                </div>
+            </>
         )
     }
     else {
         return (
-            <h1>Loading...</h1>
+            <>
+                <AdminNavbar/>
+                <h1>Loading...</h1>
+            </>
         )
     }
 }

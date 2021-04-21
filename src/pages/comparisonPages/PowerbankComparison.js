@@ -1,4 +1,5 @@
 import React from 'react'
+import Navbar from '../../components/navbar'
 import {powerbankComparisonContext} from "../../context/comparisonContexts/powerbankComparisonContext";
 import PowerbankComparisonComponent from "../../components/comparisonComponents/PowerbankComparisonComponent";
 import EmptySelection from '../../components/comparisonComponents/emptySelection'
@@ -7,6 +8,7 @@ export default function PowerbankComparison() {
     const {productTitles, handleSelection, product1ToCompare, product2ToCompare} = React.useContext(powerbankComparisonContext);
     return (
         <>
+            <Navbar/>
             <div className="grid-layout">
                 <div className="grid1">
                     <form className="form2">

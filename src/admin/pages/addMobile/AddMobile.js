@@ -1,13 +1,17 @@
 import React from 'react'
+import { v4 as uuidv4} from 'uuid'
 import {Alert} from 'react-bootstrap'
 import {storage} from '../../../firebase'
+import {useHistory} from 'react-router-dom'
+import AdminNavbar from '../../components/AdminNavbar'
 import {addMobileContext} from '../../context/AddMobileContext'
 
 export default function AddMobile() {
+    const {addMobile, success} = React.useContext(addMobileContext)
     const [confirmColorCount, setConfirmColorCount] = React.useState(0)
     const [confirmColorData, setConfirmColorData] = React.useState([])
-    const {addMobile} = React.useContext(addMobileContext)
     const [showForm, setShowForm] = React.useState(false)
+    const [loading, setLoading] = React.useState(false)
     const [fiveG, setFiveG] = React.useState(false)
     const [rand, setRand] = React.useState([])
     const screenResolutionRef = React.useRef()
@@ -28,11 +32,11 @@ export default function AddMobile() {
     const ramRef = React.useRef()
     const romRef = React.useRef()
     const gpuRef = React.useRef()
+    const history = useHistory()
     let colorCount = 0
     let colorData = []
     
-    
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
  
         var dataObject = {
@@ -62,9 +66,11 @@ export default function AddMobile() {
                 fiveG: fiveG,
                 AnTuTuBenchmark: parseInt(antutuBenchmarkRef.current.value)
             },
-            colors: []
+            colors: confirmColorData,
+            reviews: []
         }
-        addMobile(dataObject, confirmColorData).then(() => console.log(`success`))
+        await addMobile(dataObject)
+        history.push('/adminmobile')
     }
     
     const handleColor = async () => {
@@ -88,7 +94,20 @@ export default function AddMobile() {
                     colorData[i] = {...confirmColorData[i], [e.target.name.split(i)[0]]:parseInt(e.target.value)}
                 }
                 else if(e.target.name.split(i)[0] === `image`) {
-                    colorData[i] = {...confirmColorData[i], [e.target.name.split(i)[0]]:e.target.files[0]}
+                    setLoading(true)
+                    let uid = uuidv4()
+                    let uploadTask = storage.ref(`images/${uid}`).put(e.target.files[0])
+                    uploadTask.on("state_changed", snapshot => {}, error => console.log(error), () => {
+                    storage
+                        .ref('images')
+                        .child(uid)
+                        .getDownloadURL()
+                        .then((picture) => {
+                            colorData[i] = {...confirmColorData[i], 'image':picture}
+                            setConfirmColorData([...colorData])
+                            setLoading(false)
+                        }).catch((error) => {console.error(error)})
+                    })
                 }
                 else {
                     colorData[i] = {...confirmColorData[i], [e.target.name.split(i)[0]]:e.target.value}
@@ -99,7 +118,6 @@ export default function AddMobile() {
             }
         }
         setConfirmColorData([...colorData])
-        // console.log(colorData)
     }
     const change5G = () => {
         if (fiveG === true) {
@@ -111,52 +129,62 @@ export default function AddMobile() {
     }
 
     return (
-        <div className="signup section">
-            <div className="addproduct-container">
-                {
-                    !showForm && <div>How many colors do you want to add? <input type="number" onChange={handleColor} min={1} ref={colorCountRef} required/></div>
-                }
-                {
-                    showForm && (
-                        <form onSubmit={handleSubmit}>
-                            <label>Model <input type="text" ref={modelRef} required/></label>
-                            <label>Description <input type="text" ref={descriptionRef} required/></label>
-                            <label>Price <input type="number" ref={priceRef} required/></label>
-                            <label>Brand <input type="text" ref={brandRef} required/></label>
-                            <label>RAM <input type="number" ref={ramRef} required/></label>
-                            <label>ROM <input type="number" ref={romRef} required/></label>
-                            <label>Processor<input type="text" ref={processorRef} required/></label>
-                            <label>GPU<input type="text" ref={gpuRef} required/></label>
-                            <label>AnTuTu Benchmark<input type="number" ref={antutuBenchmarkRef} required/></label>
-                            <label>Battery<input type="number" ref={batteryRef} required/></label>
-                            <label>Screen Size<input type="text" ref={screenSizeRef} required/></label>
-                            <label>Screen Type<input type="text" ref={screenTypeRef} required/></label>
-                            <label>Screen Resolution<input type="text" ref={screenResolutionRef} required/></label>
-                            <label>Charging Type<input type="text" ref={chargingTypeRef} required/></label>
-                            <label>Charging Wattage<input type="number" ref={chargingWattageRef} required/></label>
-                            <label>Main Camera<input type="number" ref={mainCameraRef} required/></label>
-                            <label>Front Camera<input type="number" ref={frontCameraRef} required/></label>
-                            <label className="container" onClick={change5G}>5G
-                                <input type="checkbox" name="5g"/>
-                            </label>
-                            {
-                                rand.map((item, index) => {
-                                    return (
-                                        <div key={index}>
-                                            <h2>Color Block</h2>
-                                            <label>Name <input type="text" name={`name${index}`} required onChange={handleColorData}/></label>
-                                            <label>ColorCode <input type="text" name={`colorCode${index}`} required onChange={handleColorData}/></label>
-                                            <label>Stock <input type="number" name={`stock${index}`} required onChange={handleColorData}/></label>
-                                            <label>Image Upload <input type="file" name={`image${index}`} accept="image/*" required onChange={handleColorData}/></label>
-                                        </div>
-                                    )
-                                })
-                            }
-                            <button className="btn btn-secondary">Add Product</button>
-                        </form>
-                    )
-                }
+        <>
+            <AdminNavbar/>
+            <div className="signup section">
+                <div className="addproduct-container">
+                    {
+                        success && <Alert variant="success">Updated!</Alert>
+                    }
+                    <div className="section">
+                        <button className="btn btn-primary" onClick={() => history.push('/adminmobile')}>All Mobiles</button>
+                        <button className="btn btn-secondary">Add Mobiles</button>
+                    </div>
+                    {
+                        !showForm && <div>How many colors do you want to add? <input type="number" onChange={handleColor} min={1} ref={colorCountRef} required/></div>
+                    }
+                    {
+                        showForm && (
+                            <form onSubmit={handleSubmit}>
+                                <label>Model <input type="text" ref={modelRef} required/></label>
+                                <label>Description <input type="text" ref={descriptionRef} required/></label>
+                                <label>Price <input type="number" ref={priceRef} required/></label>
+                                <label>Brand <input type="text" ref={brandRef} required/></label>
+                                <label>RAM <input type="number" ref={ramRef} required/></label>
+                                <label>ROM <input type="number" ref={romRef} required/></label>
+                                <label>Processor<input type="text" ref={processorRef} required/></label>
+                                <label>GPU<input type="text" ref={gpuRef} required/></label>
+                                <label>AnTuTu Benchmark<input type="number" ref={antutuBenchmarkRef} required/></label>
+                                <label>Battery<input type="number" ref={batteryRef} required/></label>
+                                <label>Screen Size<input type="text" ref={screenSizeRef} required/></label>
+                                <label>Screen Type<input type="text" ref={screenTypeRef} required/></label>
+                                <label>Screen Resolution<input type="text" ref={screenResolutionRef} required/></label>
+                                <label>Charging Type<input type="text" ref={chargingTypeRef} required/></label>
+                                <label>Charging Wattage<input type="number" ref={chargingWattageRef} required/></label>
+                                <label>Main Camera<input type="number" ref={mainCameraRef} required/></label>
+                                <label>Front Camera<input type="number" ref={frontCameraRef} required/></label>
+                                <label className="container" onClick={change5G}>5G
+                                    <input type="checkbox" name="5g"/>
+                                </label>
+                                {
+                                    rand.map((item, index) => {
+                                        return (
+                                            <div key={index}>
+                                                <h2>Color Block</h2>
+                                                <label>Name <input type="text" name={`name${index}`} required onChange={handleColorData}/></label>
+                                                <label>ColorCode <input type="text" name={`colorCode${index}`} required onChange={handleColorData}/></label>
+                                                <label>Stock <input type="number" name={`stock${index}`} required onChange={handleColorData}/></label>
+                                                <label>Image Upload <input type="file" name={`image${index}`} accept="image/*" required onChange={handleColorData}/></label>
+                                            </div>
+                                        )
+                                    })
+                                }
+                                <button className="btn btn-secondary" disabled={loading}>Add Product</button>
+                            </form>
+                        )
+                    }
+                </div>
             </div>
-        </div>
+        </>
     )
 }
