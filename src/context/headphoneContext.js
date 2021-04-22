@@ -43,7 +43,7 @@ export default function HeadphoneContextProvider({children}) {
                 newProducts = newProducts.filter(item => item.price <= price)
             }
             else {
-                newProducts = newProducts.filter(item => item.price > 100000)
+                newProducts = newProducts.filter(item => item.price >= 20000)
             }
         }
         if (search !== "") {

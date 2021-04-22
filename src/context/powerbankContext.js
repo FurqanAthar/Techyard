@@ -42,7 +42,7 @@ export default function PowerbankContextProvider({children}) {
                 newProducts = newProducts.filter(item => item.price <= price)
             }
             else {
-                newProducts = newProducts.filter(item => item.price > 100000)
+                newProducts = newProducts.filter(item => item.price >= 15000)
             }
         }
         if (search !== "") {

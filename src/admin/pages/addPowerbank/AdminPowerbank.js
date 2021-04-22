@@ -29,7 +29,7 @@ export default function AdminPowerbank() {
                                 })
                             }
                         </div>
-                    ) : <div className="section">No Headphones to Show...</div>
+                    ) : <div className="section">No Powerbanks to Show...</div>
                 }
             </div>
         </>

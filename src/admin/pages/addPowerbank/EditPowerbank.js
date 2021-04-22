@@ -58,8 +58,8 @@ export default function EditPowerbank() {
             <div className="signup section">
                 <div className="addproduct-container">
                     <div className="section">
-                        <button className="btn btn-primary" onClick={() => history.push('/adminpowerbank')}>All Headphones</button>
-                        <button className="btn btn-primary" onClick={() => history.push('/addpowerbank')}>Add Headphone</button>
+                        <button className="btn btn-primary" onClick={() => history.push('/adminpowerbank')}>All Powerbanks</button>
+                        <button className="btn btn-primary" onClick={() => history.push('/addpowerbank')}>Add Powerbank</button>
                     </div>
                     {
                         (product) ?

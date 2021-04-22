@@ -1,7 +1,7 @@
 import React from 'react'
 import ProductCard from './productCard'
 
-export default function ProductList({products}) {
+export default function HeadphoneProductList({products}) {
     return (
         <div className="section">
             <div className="products-center">

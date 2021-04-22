@@ -18,6 +18,8 @@ import Orders from './admin/pages/orders/Orders'
 import OrderDetailPage from './admin/pages/orders/OrderDetailPage'
 import ValidatedOrders from './admin/pages/orders/ValidatedOrders'
 import DeliveredOrders from './admin/pages/orders/DeliveredOrders'
+// Add Coming Soon Products
+import AddComingSoon from './admin/pages/comingSoon/AddComingSoon'
 // Add Coupons
 import Coupons from './admin/pages/Coupons'
 import AddCoupons from './admin/pages/addCoupons'
@@ -96,6 +98,8 @@ function App() {
         <SubAdminPrivateRoute path="/validatedorders"><ValidatedOrders/></SubAdminPrivateRoute>
         <SubAdminPrivateRoute path="/deliveredorders"><DeliveredOrders/></SubAdminPrivateRoute>
         <SubAdminPrivateRoute path="/orderdetail/:id"><OrderDetailPage/></SubAdminPrivateRoute>
+        {/* Add Coming Soon Product */}
+        <SubAdminPrivateRoute path="/addcomingsoon"><AddComingSoon/></SubAdminPrivateRoute>
         {/* Add Coupon */}
         <SubAdminPrivateRoute path="/coupons"><Coupons/></SubAdminPrivateRoute>
         <SubAdminPrivateRoute path="/addcoupon"><AddCoupons/></SubAdminPrivateRoute>
