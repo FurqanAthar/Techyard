@@ -1,11 +1,12 @@
 import React from 'react'
-import data from '../data/mobileData'
+import {addMobileContext} from '../admin/context/AddMobileContext'
 import {paginateProducts} from '../utilityFunctions/utils'
 
 export const mobileContext = React.createContext();
 
 export default function MobileContextProvider({children}) {
-    const [mobileData, setMobileData] = React.useState(data);
+    const {mobileData} = React.useContext(addMobileContext)
+    // const [mobileData, setMobileData] = React.useState(data);
     const [sortedProducts, setSortedProducts] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [filters, setFilters] = React.useState({
@@ -38,7 +39,7 @@ export default function MobileContextProvider({children}) {
             setBatterys((prev) => ([...prev, singleMobile.features.battery]))
             setChargingTypes((prev) => ([...prev, singleMobile.features.charging.type]))
         })
-    }, [])
+    }, [mobileData])
 
     // For applying filters
     React.useEffect(() => {

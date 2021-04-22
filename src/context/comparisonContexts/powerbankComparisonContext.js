@@ -1,15 +1,21 @@
 import React from 'react'
-import powerbankData from "../../data/powerbankData";
+import {powerbankContext} from '../powerbankContext'
 import {getAllTitles} from "../../utilityFunctions/utils";
 
 export const powerbankComparisonContext = React.createContext();
 
 export default function HeadphoneComparisonProvider({children}) {
-    const [comparisonProducts, setComparisonProducts] = React.useState(powerbankData);
-    const [productTitles, setProductTitles] = React.useState(getAllTitles(comparisonProducts));
+    const {powerbankData} = React.useContext(powerbankContext)
+    const [comparisonProducts, setComparisonProducts] = React.useState([]);
+    const [productTitles, setProductTitles] = React.useState([]);
     const [product1ToCompare, setProduct1] = React.useState();
     const [product2ToCompare, setProduct2] = React.useState();
     
+    React.useEffect(()=>{
+        setComparisonProducts([...powerbankData])
+        setProductTitles([...getAllTitles(powerbankData)])
+    }, [powerbankData])
+
     const handleSelection = (e) => {
         const value = e.target.value;
         const name = e.target.name;

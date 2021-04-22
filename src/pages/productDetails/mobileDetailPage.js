@@ -1,11 +1,11 @@
 import React from 'react'
 import { Alert } from "react-bootstrap"
 import { Link } from 'react-router-dom'
+import Navbar from '../../components/navbar'
 import {cartContext} from '../../context/CartContext'
 import {useParams, useHistory} from "react-router-dom";
 import ProductList from '../../components/productList';
 import {mobileContext} from '../../context/mobileContext'
-import Navbar from '../../components/navbar'
 
 export default function MobileDetailPage() {
     const [reviewsButton, setReviewsButton] = React.useState(false)
@@ -204,7 +204,16 @@ export default function MobileDetailPage() {
                     }
                     {
                         reviewsButton && (
-                            <p>No Reviews to Show</p>
+                            product.reviews.length>0 ? (
+                                product.reviews.map((item, index) => {
+                                    return (
+                                        <div className="reviews single-feature">
+                                            <span className="feature-title">Review - {index+1}</span>
+                                            <p>{item.review}</p>
+                                        </div>
+                                    )
+                                })
+                            ) : <p>No Reviews to show...</p>
                         )
                     }
                 </div>

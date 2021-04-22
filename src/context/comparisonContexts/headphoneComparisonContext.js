@@ -1,15 +1,21 @@
 import React from 'react'
-import headphoneData from "../../data/headphoneData";
+import {headphoneContext} from '../headphoneContext'
 import {getAllTitles} from "../../utilityFunctions/utils";
 
 export const headphoneComparisonContext = React.createContext();
 
 export default function HeadphoneComparisonProvider({children}) {
-    const [comparisonProducts, setComparisonProducts] = React.useState(headphoneData);
-    const [productTitles, setProductTitles] = React.useState(getAllTitles(comparisonProducts));
+    const {headphoneData} = React.useContext(headphoneContext)
+    const [comparisonProducts, setComparisonProducts] = React.useState([]);
+    const [productTitles, setProductTitles] = React.useState([]);
     const [product1ToCompare, setProduct1] = React.useState();
     const [product2ToCompare, setProduct2] = React.useState();
     
+    React.useEffect(()=>{
+        setComparisonProducts([...headphoneData])
+        setProductTitles([...getAllTitles(headphoneData)])
+    }, [headphoneData])
+
     const handleSelection = (e) => {
         const value = e.target.value;
         const name = e.target.name;

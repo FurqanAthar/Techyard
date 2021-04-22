@@ -16,6 +16,7 @@ import { AuthProvider } from './context/authContext'
 import { CartProvider } from './context/CartContext';
 import SuperAdminContextProvider from './admin/context/LoginSignupContexts/superAdminContext'
 import SubAdminContextProvider from './admin/context/LoginSignupContexts/subAdminContext'
+import OrderContextProvider from './admin/context/OrdersContext'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -33,7 +34,9 @@ ReactDOM.render(
                           <HeadphoneComparisonProvider>
                             <PowerbankContextProvider>
                               <PowerbankComparisonProvider>
-                                <App />
+                                <OrderContextProvider>
+                                  <App />
+                                </OrderContextProvider>
                               </PowerbankComparisonProvider>
                             </PowerbankContextProvider>
                           </HeadphoneComparisonProvider>

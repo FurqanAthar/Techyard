@@ -133,7 +133,16 @@ export default function HeadphoneDetailPage() {
                     }
                     {
                         reviewsButton && (
-                            <p>No Reviews to Show</p>
+                            product.reviews.length>0 ? (
+                                product.reviews.map((item, index) => {
+                                    return (
+                                        <div className="reviews single-feature">
+                                            <span className="feature-title">Review - {index+1}</span>
+                                            <p>{item.review}</p>
+                                        </div>
+                                    )
+                                })
+                            ) : <p>No Reviews to show...</p>
                         )
                     }
                 </div>

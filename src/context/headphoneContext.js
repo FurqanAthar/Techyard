@@ -1,11 +1,11 @@
 import React from 'react'
-import data from '../data/headphoneData'
+import {addHeadphoneContext} from '../admin/context/AddHeadphoneContext'
 import {paginateProducts} from '../utilityFunctions/utils'
 
 export const headphoneContext = React.createContext();
 
 export default function HeadphoneContextProvider({children}) {
-    const [headphoneData, setHeadphoneData] = React.useState(data);
+    const {headphoneData} = React.useContext(addHeadphoneContext)
     const [sortedProducts, setSortedProducts] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [filters, setFilters] = React.useState({
@@ -25,7 +25,7 @@ export default function HeadphoneContextProvider({children}) {
             setBrands((prev) => ([...prev, singleHeadphone.brand.toLowerCase()]))
             setBatterys((prev) => ([...prev, singleHeadphone.features.battery]))
         })
-    }, [])
+    }, [headphoneData])
 
     // For applying filters
     React.useEffect(() => {

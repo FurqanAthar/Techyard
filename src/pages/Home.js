@@ -2,17 +2,23 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Banner from '../components/banner'
 import bannerImage from '../assets/banner images/home/homebanner.png'
-import MobileContextProvider, { mobileContext } from '../context/mobileContext'
+import { mobileContext } from '../context/mobileContext'
 import ProductList from '../components/productList'
-import SmallBannerCards from '../components/SmallBannerCards'
 import Navbar from '../components/navbar'
 
 export default function Home() {
     const {mobileData} = React.useContext(mobileContext)
-    const limitedMobileData = []
+    let limitedMobileData = []
 
-    for (var i=0; i<4; i++) {
-        limitedMobileData.push(mobileData[i])
+    if (mobileData.length > 0) {
+        if (mobileData.length > 4) {
+            for (var i=0; i<4; i++) {
+                limitedMobileData.push(mobileData[i])
+            }
+        }
+        else {
+            limitedMobileData = [...mobileData]
+        }
     }
     return (
         <div>

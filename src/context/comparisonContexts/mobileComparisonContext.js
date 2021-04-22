@@ -1,15 +1,21 @@
 import React from 'react'
-import mobileData from "../../data/mobileData";
+import {mobileContext} from '../mobileContext'
 import {getAllTitles} from "../../utilityFunctions/utils";
 
 export const mobileComparisonContext = React.createContext();
 
 export default function MobileComparisonProvider({children}) {
-    const [comparisonProducts, setComparisonProducts] = React.useState(mobileData);
-    const [productTitles, setProductTitles] = React.useState(getAllTitles(comparisonProducts));
+    const {mobileData} = React.useContext(mobileContext)
+    const [comparisonProducts, setComparisonProducts] = React.useState([]);
+    const [productTitles, setProductTitles] = React.useState([]);
     const [product1ToCompare, setProduct1] = React.useState();
     const [product2ToCompare, setProduct2] = React.useState();
     
+    React.useEffect(()=>{
+        setComparisonProducts([...mobileData])
+        setProductTitles([...getAllTitles(mobileData)])
+    }, [mobileData])
+
     const handleSelection = (e) => {
         const value = e.target.value;
         const name = e.target.name;

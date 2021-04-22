@@ -77,6 +77,10 @@ h4 {
     font-weight: 300;
     margin: 10px 0px;
 }
+.review-btn {
+    margin-left: 5px;
+    padding: 10px 25px;
+}
 .btn:active {
     background: transparent;
 }
@@ -92,6 +96,7 @@ h4 {
 .btn-secondary {
     background: var(--golden);
     color: white;
+    margin-right: 10px;
 }
 .btn-secondary:hover {
     background: transparent;
@@ -599,6 +604,13 @@ nav .sidebar {
     color: var(--golden);
 }
 
+.checkout p{
+    color: var(--golden);
+}
+.checkout span {
+    color: var(--silver);
+}
+
 /* Comparison Products */
 .grid-layout {
   display: grid;
@@ -780,6 +792,69 @@ nav .sidebar {
     color: var(--silver);
 }
 
+/* Admin Dashboard */
+.admindashboard-card {
+    width: 40%;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid var(--silver);
+}
+.admindashboard-orders {
+    width: 83%;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid var(--silver);
+}
+.admindashboard-card p {
+    color: var(--golden);
+}
+.admindashboard-card span {
+    color: var(--silver);
+}
+
+.order-product-item {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 2fr 4fr 2fr;
+  grid-column-gap: 1.5rem;
+  margin: 1.5rem 0;
+  padding: 15px 30px;
+  border: 2px solid var(--silver);
+}
+.order-product-item img {
+  width: 5rem;
+}
+.order-product-item .content p{
+    color: var(--golden);
+}
+.order-product-item .content h4 {
+    color: var(--silver);
+}
+
+/* My order */
+.mycart-section {
+    width: 700px;
+    border: 2px solid var(--silver);
+    margin: 1.5rem 0;
+    padding: 15px 30px;
+    text-align: center;
+}
+.myorder-product-item {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 2fr 4fr 2fr;
+    grid-column-gap: 1.5rem;
+    padding: 15px 00px;
+}
+.myorder-product-item img {
+  width: 5rem;
+}
+.myorder-product-item .content p{
+    color: var(--golden);
+}
+.myorder-product-item .content h4 {
+    color: var(--silver);
+}
 @media screen and (max-width:767px) {
     nav .logo {
         width: 25%;
@@ -813,6 +888,20 @@ nav .sidebar {
         width: 150px;
         height: 150px;
     }
+}
+
+/* Orders */
+.order {
+    border: 1px solid var(--silver);
+    padding: 20px;
+    margin: 20px;
+}
+.order p {
+    color: var(--golden);
+    margin: 0;
+}
+.order span {
+    color: var(--silver);
 }
 
 @media screen and (max-width:479px) {

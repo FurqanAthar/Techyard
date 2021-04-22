@@ -1,11 +1,11 @@
 import React from 'react'
-import data from '../data/powerbankData'
+import {addPowerbankContext} from '../admin/context/AddPowerbankContext'
 import {paginateProducts} from '../utilityFunctions/utils'
 
 export const powerbankContext = React.createContext();
 
 export default function PowerbankContextProvider({children}) {
-    const [powerbankData, setPowerbankData] = React.useState(data);
+    const {powerbankData} = React.useContext(addPowerbankContext)
     const [sortedProducts, setSortedProducts] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [filters, setFilters] = React.useState({
@@ -24,7 +24,7 @@ export default function PowerbankContextProvider({children}) {
             setBrands((prev) => ([...prev, singlePowerbank.brand.toLowerCase()]))
             setCapacities((prev) => ([...prev, singlePowerbank.features.capacity]))
         })
-    }, [])
+    }, [powerbankData])
 
     // For applying filters
     React.useEffect(() => {

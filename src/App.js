@@ -5,9 +5,6 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Home from './pages/Home'
 import Dashboard from './admin/pages/Dashboard'
 import SuperAdminDashboard from './admin/pages/SuperAdminDashboard'
-// Navbars
-import Navbar from './components/navbar'
-import AdminNavbar from './admin/components/AdminNavbar'
 // Display Pages
 import Mobiles from './pages/Mobiles'
 import Laptops from './pages/Laptops'
@@ -16,6 +13,11 @@ import Accessories from './pages/Accessories'
 // ---------------------------------------  Sub Admin  --------------------------------------
 // Login
 import SubAdminLogin from './admin/pages/LoginSignup/SubAdminLogin'
+// Admin Orders Page
+import Orders from './admin/pages/orders/Orders'
+import OrderDetailPage from './admin/pages/orders/OrderDetailPage'
+import ValidatedOrders from './admin/pages/orders/ValidatedOrders'
+import DeliveredOrders from './admin/pages/orders/DeliveredOrders'
 // Add Coupons
 import Coupons from './admin/pages/Coupons'
 import AddCoupons from './admin/pages/addCoupons'
@@ -32,11 +34,15 @@ import EditHeadphone from './admin/pages/addHeadphone/EditHeadphone'
 import AddPowerbank from './admin/pages/addPowerbank/AddPowerbank'
 import AdminPowerbank from './admin/pages/addPowerbank/AdminPowerbank'
 import EditPowerbank from './admin/pages/addPowerbank/EditPowerbank'
-// Cart => Login Signup
-import MyCart from './pages/MyCart'
+// Login Signup
 import Signup from './pages/Signup'
 import Login from './pages/Login'
 import ForgotPassword from './pages/ForgotPassword'
+// Cart
+import MyCart from './pages/MyCart'
+import Checkout from './pages/Checkout'
+import MyOrders from './pages/orders/MyOrders'
+import MyOrderDetail from './pages/orders/MyOrderDetail'
 // Private Routes
 import PrivateRoute from './privateRoutes/privateRoute'
 import SuperAdminPrivateRoute from './privateRoutes/SuperAdminPrivateRoute'
@@ -71,16 +77,25 @@ function App() {
         <Route path="/mobilecomparison"><MobileComparison/></Route>
         <Route path="/headphonecomparison"><HeadphoneComparison/></Route>
         <Route path="/powerbankcomparison"><PowerbankComparison/></Route>
-        {/* Cart => Login Signup */}
-        <Route path="/mycart"> <MyCart/></Route>
+        {/* Login Signup */}
         <Route path="/login"><Login/></Route>
         <Route path="/signup"><Signup/></Route>
         <Route path="/forgot-password"><ForgotPassword/></Route>
-        
+        {/* Cart */}
+        <Route path="/mycart"> <MyCart/></Route>
+        <PrivateRoute path="/checkout"> <Checkout/> </PrivateRoute>
+        <PrivateRoute path="/myorders"> <MyOrders/> </PrivateRoute>
+        <PrivateRoute path="/myorderdetail/:id"> <MyOrderDetail/> </PrivateRoute>
+
         {/* --------------------------------------  Admin Side -----------------------------------*/}
         <Route path="/subadminlogin"><SubAdminLogin/></Route>
         <SubAdminPrivateRoute path="/admindashboard"><Dashboard/></SubAdminPrivateRoute>
         <SubAdminPrivateRoute path="/subadminupdatepassword"><SubAdminUpdatePassword/></SubAdminPrivateRoute>
+        {/* Orders */}
+        <SubAdminPrivateRoute path="/orders"><Orders/></SubAdminPrivateRoute>
+        <SubAdminPrivateRoute path="/validatedorders"><ValidatedOrders/></SubAdminPrivateRoute>
+        <SubAdminPrivateRoute path="/deliveredorders"><DeliveredOrders/></SubAdminPrivateRoute>
+        <SubAdminPrivateRoute path="/orderdetail/:id"><OrderDetailPage/></SubAdminPrivateRoute>
         {/* Add Coupon */}
         <SubAdminPrivateRoute path="/coupons"><Coupons/></SubAdminPrivateRoute>
         <SubAdminPrivateRoute path="/addcoupon"><AddCoupons/></SubAdminPrivateRoute>
