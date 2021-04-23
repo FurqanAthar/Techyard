@@ -5,10 +5,12 @@ import {orderContext} from '../context/OrdersContext'
 import OrderCard from '../components/orders/OrderCard'
 import {couponContext} from '../context/couponsContext'
 import {addMobileContext} from '../context/AddMobileContext'
+import {adminQueryContext} from '../../context/adminQueryContext'
 import {addHeadphoneContext} from '../context/AddHeadphoneContext'
 import {addPowerbankContext} from '../context/AddPowerbankContext'
 
 export default function Dashboard() {
+    const {openQueries} = React.useContext(adminQueryContext)
     const {headphoneData} = React.useContext(addHeadphoneContext)
     const {powerbankData} = React.useContext(addPowerbankContext)
     const {mobileData} = React.useContext(addMobileContext)
@@ -37,6 +39,14 @@ export default function Dashboard() {
                             </>
                         ) : <p>No orders to show...</p>
                     }
+                </div>
+            </div>
+            <div className="section d-flex">
+                <div className="admindashboard-orders">
+                    <div className="count-button">
+                        <p>Open Queries: {openQueries.length}</p>
+                        <button className="btn btn-secondary" onClick={() => history.push('/reviewqueries')}>See All</button>
+                    </div>
                 </div>
             </div>
             <div className="section d-flex">

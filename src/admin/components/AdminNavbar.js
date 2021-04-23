@@ -21,11 +21,14 @@ export default function AdminNavbar() {
                     <li>
                         <Link to='/adminpowerbank'>Powerbanks</Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to='/coupons'>Coupons</Link>
-                    </li>
+                    </li> */}
                     <li>
                         <Link to='/addcomingsoon'>Coming Soon</Link>
+                    </li>
+                    <li>
+                        <Link to='/addquery'>Queries</Link>
                     </li>
                     {
                         subAdmin && (

@@ -6,6 +6,7 @@ import {useHistory} from 'react-router-dom'
 import {useAuth} from '../context/authContext'
 import {cartContext} from '../context/CartContext'
 import {applyDiscount} from '../utilityFunctions/utils'
+import {orderContext} from '../admin/context/OrdersContext'
 import {couponContext} from '../admin/context/couponsContext'
 
 
@@ -13,10 +14,11 @@ export default function Checkout() {
     const [discountApplied, setDiscountApplied] = React.useState(false)
     const {cart, total, emptyCart} = React.useContext(cartContext)
     const {couponData} = React.useContext(couponContext)
+    const [success, setSuccess] = React.useState(false)
+    const {validate} = React.useContext(orderContext)
     const [dprice, setDprice] = React.useState(total)
     const [discount, setDiscount] = React.useState(0)
     const [error, setError] = React.useState(false)
-    const [success, setSuccess] = React.useState(false)
     const couponRef = React.useRef()
     const {currentUser} = useAuth()
     const history = useHistory()
@@ -51,7 +53,8 @@ export default function Checkout() {
             data: cart,
             price: parseFloat(dprice),
             status: `new`
-        }).then(() => {
+        }).then(async (doc) => {
+            await validate(doc.id)
             setSuccess(true)
             setTimeout(() => {
                 setSuccess(false)

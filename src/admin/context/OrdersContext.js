@@ -25,8 +25,7 @@ export default function OrderContextProvider({children}) {
         loadOrders()
     }, [])
 
-    const loadOrders = () => {
-        console.log('loadorders')
+    const loadOrders = async () => {
         firestore.collection('orders').get().then(data => {
             let dataArray = []
             let newDataArray = []
@@ -62,7 +61,7 @@ export default function OrderContextProvider({children}) {
             headphones: [],
             powerbanks: [],
         }
-        firestore.collection('orders').doc(id).get().then((doc) => {
+        return firestore.collection('orders').doc(id).get().then((doc) => {
             tempData = {...doc.data()}
             validationHelper(doc.data()).then((data) => {
                 updateFirebase(data.dataToUpdate, id)

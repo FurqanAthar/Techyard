@@ -18,40 +18,46 @@ import SuperAdminContextProvider from './admin/context/LoginSignupContexts/super
 import SubAdminContextProvider from './admin/context/LoginSignupContexts/subAdminContext'
 import OrderContextProvider from './admin/context/OrdersContext'
 import ComingSoonContextProvider from './context/comingSoonContext'
+import QueryContextProvider from './admin/context/queryContext'
+import AdminQueryContextProvider from './context/adminQueryContext'
 
 ReactDOM.render(
   <React.StrictMode>
     <SuperAdminContextProvider>
       <SubAdminContextProvider>
-        <ComingSoonContextProvider>
-          <AuthProvider>
-            <CouponContextProvider>
-              <AddMobileContextProvider>
-                <AddHeadphoneContextProvider>
-                  <AddPowerbankContextProvider>
-                    <CartProvider>
-                      <MobileContextProvider>
-                        <MobileComparisonProvider>
-                          <HeadphoneContextProvider>
-                            <HeadphoneComparisonProvider>
-                              <PowerbankContextProvider>
-                                <PowerbankComparisonProvider>
-                                  <OrderContextProvider>
-                                    <App />
-                                  </OrderContextProvider>
-                                </PowerbankComparisonProvider>
-                              </PowerbankContextProvider>
-                            </HeadphoneComparisonProvider>
-                          </HeadphoneContextProvider>
-                        </MobileComparisonProvider>
-                      </MobileContextProvider>
-                    </CartProvider>
-                  </AddPowerbankContextProvider>
-                </AddHeadphoneContextProvider>
-              </AddMobileContextProvider>
-            </CouponContextProvider>
-          </AuthProvider>
-        </ComingSoonContextProvider>
+        <QueryContextProvider>
+          <AdminQueryContextProvider>
+            <ComingSoonContextProvider>
+              <AuthProvider>
+                <CouponContextProvider>
+                  <AddMobileContextProvider>
+                    <AddHeadphoneContextProvider>
+                      <AddPowerbankContextProvider>
+                        <CartProvider>
+                          <MobileContextProvider>
+                            <MobileComparisonProvider>
+                              <HeadphoneContextProvider>
+                                <HeadphoneComparisonProvider>
+                                  <PowerbankContextProvider>
+                                    <PowerbankComparisonProvider>
+                                      <OrderContextProvider>
+                                        <App />
+                                      </OrderContextProvider>
+                                    </PowerbankComparisonProvider>
+                                  </PowerbankContextProvider>
+                                </HeadphoneComparisonProvider>
+                              </HeadphoneContextProvider>
+                            </MobileComparisonProvider>
+                          </MobileContextProvider>
+                        </CartProvider>
+                      </AddPowerbankContextProvider>
+                    </AddHeadphoneContextProvider>
+                  </AddMobileContextProvider>
+                </CouponContextProvider>
+              </AuthProvider>
+            </ComingSoonContextProvider>
+          </AdminQueryContextProvider>
+        </QueryContextProvider>
       </SubAdminContextProvider>
     </SuperAdminContextProvider>
   </React.StrictMode>,

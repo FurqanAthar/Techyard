@@ -2,8 +2,8 @@ import React from 'react'
 import {Alert} from 'react-bootstrap'
 import {cartContext} from '../../context/CartContext'
 import {mobileContext} from '../../context/mobileContext'
-import {checkStockWithColor} from '../../utilityFunctions/utils'
 import {FaAngleUp, FaAngleDown, FaTimes} from "react-icons/fa";
+import {checkStockWithColor} from '../../utilityFunctions/utils'
 
 export default function SingleProductCart({data}) {
     const {increaseAmount, decreaseAmount, removeItem} = React.useContext(cartContext)

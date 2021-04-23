@@ -88,7 +88,6 @@ function CartProvider ({children}) {
         setCart([...newCart])
     };
     const addToCart = product => {
-        console.log(product)
         let alreadyPresent = [];
         const { which } = product
         if (which == `mobile`) {

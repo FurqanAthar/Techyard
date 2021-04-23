@@ -61,6 +61,13 @@ import AccessorieDetailPage from './pages/productDetails/AccessoriesDetailPage'
 import MobileComparison from './pages/comparisonPages/mobileComparison'
 import HeadphoneComparison from './pages/comparisonPages/HeadphoneComparison'
 import PowerbankComparison from './pages/comparisonPages/PowerbankComparison'
+// Admin Queries
+import AddQuery from './admin/pages/queries/AddQuery'
+import ReviewQueries from './admin/pages/queries/ReviewQueries'
+import ClosedQueries from './admin/pages/queries/ClosedQueries'
+// Client Queries
+import Query from './pages/adminQuery/Query'
+import MyQueries from './pages/adminQuery/MyQueries'
 
 function App() {
   return (
@@ -90,11 +97,18 @@ function App() {
         <PrivateRoute path="/checkout"> <Checkout/> </PrivateRoute>
         <PrivateRoute path="/myorders"> <MyOrders/> </PrivateRoute>
         <PrivateRoute path="/myorderdetail/:id"> <MyOrderDetail/> </PrivateRoute>
+        {/* Query */}
+        <PrivateRoute path="/query"> <Query/> </PrivateRoute>
+        <PrivateRoute path="/myqueries"> <MyQueries/> </PrivateRoute>
 
         {/* --------------------------------------  Admin Side -----------------------------------*/}
         <Route path="/subadminlogin"><SubAdminLogin/></Route>
         <SubAdminPrivateRoute path="/admindashboard"><Dashboard/></SubAdminPrivateRoute>
         <SubAdminPrivateRoute path="/subadminupdatepassword"><SubAdminUpdatePassword/></SubAdminPrivateRoute>
+        {/* Queries */}
+        <SubAdminPrivateRoute path="/addquery"><AddQuery/></SubAdminPrivateRoute>
+        <SubAdminPrivateRoute path="/reviewqueries"><ReviewQueries/></SubAdminPrivateRoute>
+        <SubAdminPrivateRoute path="/closedqueries"><ClosedQueries/></SubAdminPrivateRoute>
         {/* Orders */}
         <SubAdminPrivateRoute path="/orders"><Orders/></SubAdminPrivateRoute>
         <SubAdminPrivateRoute path="/validatedorders"><ValidatedOrders/></SubAdminPrivateRoute>

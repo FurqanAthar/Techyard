@@ -25,6 +25,13 @@ export default function Navbar() {
                         <Link to='/accessories'>Accessories</Link>
                     </li>
                     {
+                        currentUser && (
+                            <li>
+                                <Link to='/query'>Query?</Link>
+                            </li>
+                        )
+                    }
+                    {
                         !currentUser && (
                             <>
                                 <li>
