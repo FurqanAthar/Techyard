@@ -4,6 +4,7 @@ import {Alert} from 'react-bootstrap'
 import {useHistory} from 'react-router-dom'
 import {storage, firestore} from '../../../firebase'
 import AdminNavbar from '../../components/AdminNavbar'
+import RegistrationCard from '../../components/comingsoon/RegistrationCard'
 
 export default function AddComingSoon() {
     const [alreadyPresent, setAlreadyPresent] = React.useState({})
@@ -97,24 +98,36 @@ export default function AddComingSoon() {
                                 <label>Model <input type="text" ref={titleRef} required/></label>
                                 <label>Description <input type="text" ref={descriptionRef} required/></label>
                                 <label>Image Upload <input type="file" name={`image`} accept="image/*" required onChange={handleImage}/></label>
-                                <button className="btn btn-secondary" disabled={loading}>Add Product</button>
+                                <button className="btn btn-secondary" disabled={loading}>Add Coming Soon Product</button>
                             </form>
                         </div>
                     </div>
                 ) : (
-                    <div className="signup section">
-                        <div className="addproduct-container">
-                            {
-                                success && <Alert variant="success">Updated!</Alert>
-                            }
-                            <form onSubmit={handleUpdate}>
-                                <label>Model <input type="text" name="title" value={alreadyPresent.title} onChange={handleChange} required/></label>
-                                <label>Description <input type="text" name="description" value={alreadyPresent.description} onChange={handleChange} required/></label>
-                                <label>Image Upload <input type="file" name={`image`} accept="image/*" onChange={handleImage}/></label>
-                                <button className="btn btn-secondary" disabled={loading}>Add Product</button>
-                            </form>
+                    <>
+                        <div className="signup section">
+                            <div className="addproduct-container">
+                                {
+                                    success && <Alert variant="success">Updated!</Alert>
+                                }
+                                <form onSubmit={handleUpdate}>
+                                    <label>Model <input type="text" name="title" value={alreadyPresent.title} onChange={handleChange} required/></label>
+                                    <label>Description <input type="text" name="description" value={alreadyPresent.description} onChange={handleChange} required/></label>
+                                    <label>Image Upload <input type="file" name={`image`} accept="image/*" onChange={handleImage}/></label>
+                                    <button className="btn btn-secondary" disabled={loading}>Update Coming Soon Product</button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
+                        <div className="section">
+                            <h2>Registrations</h2>
+                            {
+                                alreadyPresent.registrations.length === 0 ? <p>No Registration</p> : (
+                                    alreadyPresent.registrations.map((item, index) => {
+                                        return <RegistrationCard data={{...item}} key={index}/>
+                                    })
+                                )
+                            }
+                        </div>
+                    </>
                 )
             }
         </>

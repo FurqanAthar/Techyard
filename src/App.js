@@ -20,6 +20,7 @@ import ValidatedOrders from './admin/pages/orders/ValidatedOrders'
 import DeliveredOrders from './admin/pages/orders/DeliveredOrders'
 // Add Coming Soon Products
 import AddComingSoon from './admin/pages/comingSoon/AddComingSoon'
+import Registration from './pages/Registration'
 // Add Coupons
 import Coupons from './admin/pages/Coupons'
 import AddCoupons from './admin/pages/addCoupons'
@@ -68,6 +69,7 @@ function App() {
         {/* --------------------------------------  Client Side -----------------------------------*/}
         {/* Display Pages */}
         <Route exact path="/"> <Home/> </Route>
+        <Route exact path="/register"> <Registration/> </Route>
         <Route exact path="/mobiles"> <Mobiles/> </Route>
         <Route exact path="/headphones"> <HeadPhones/> </Route>
         <Route exact path="/accessories"> <Accessories/> </Route>

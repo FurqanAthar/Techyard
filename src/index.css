@@ -202,7 +202,7 @@ nav .sidebar {
     min-height: 100%;
     background-color: var(--bannerBackground);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 50px 100px;
 }
@@ -211,7 +211,12 @@ nav .sidebar {
     margin: 20px 0px;
 }
 .banner .banner-content {
-    width: 50%;
+    width: 48%;
+}
+.banner-image {
+    width: 48%;
+    min-height: 350px;
+    max-height: 500px;
 }
 
 /* Banner Cards */

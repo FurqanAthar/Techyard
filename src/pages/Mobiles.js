@@ -21,9 +21,9 @@ export default function Mobiles() {
             <Navbar/>
             <Banner image={mobileBannerImage} title = "Compare Mobile Phones" info = "Get Ideas about how you want your next phone to be!">
                 <Link to = '/mobilecomparison' className = "btn btn-primary">Compare!</Link>
-                <Link to = '/mobilecomparison' className = "btn btn-secondary"> Checkout! </Link>
+                <a href = '#mobiles' className = "btn btn-secondary"> Checkout! </a>
             </Banner>
-            <div className="filtration-and-products">
+            <div id="mobiles" className="filtration-and-products">
                 <MobileFilters data = {{filters, roms, rams, allColors, batterys, chargingTypes, brands, updateFilters, clearFilters}}/>
                 <PagenatedProducts data = {{sortedProducts, page, changePage}}></PagenatedProducts>
             </div>

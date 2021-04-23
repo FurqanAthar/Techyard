@@ -16,10 +16,10 @@ export default function HeadPhones() {
         <div>
             <Navbar/>
             <Banner image={headphoneBannerImage} title = "Compare Headphones" info = "Innovative, Amazing and Efficient">
-                <Link to = '/headphonecomparison' className = "btn btn-primary">Checkout!</Link>
-                <Link to = '/headphonecomparison' className = "btn btn-secondary"> Add to Cart! </Link>
+                <Link to = '/headphonecomparison' className = "btn btn-primary">Compare!</Link>
+                <a href = '#headphones' className = "btn btn-secondary"> Checkout! </a>
             </Banner>
-            <div className="filtration-and-products">
+            <div id="headphones" className="filtration-and-products">
                 <HeadphoneFilters data = {{filters, batterys, brands, updateFilters, clearFilters}}/>
                 <PaginatedProducts data = {{sortedProducts, page, changePage}}></PaginatedProducts>
             </div>

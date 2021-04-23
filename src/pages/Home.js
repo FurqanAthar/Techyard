@@ -54,8 +54,8 @@ export default function Home() {
     return (
         <div>
             <Navbar/>
-            <Banner image={comingSoonData ? comingSoonData.image : bannerImage} title = {comingSoonData ? comingSoonData.title : "Samsung S21"} info = {comingSoonData ? comingSoonData.description : "Innovative, Effective and Afordable!"}>
-                <Link to = '/mobiles' className = "btn btn-primary"> Register! </Link>
+            <Banner image={comingSoonData ? comingSoonData.image : bannerImage} title = {comingSoonData ? comingSoonData.title : "Samsung S21"} subtitle = "Coming Soon!" info = {comingSoonData ? comingSoonData.description : "Innovative, Effective and Afordable!"}>
+                <Link to = '/register' className = "btn btn-primary"> Register! </Link>
                 <Link to = '/mobiles' className = "btn btn-secondary"> See Other Products </Link>
             </Banner>
             <div className="section">

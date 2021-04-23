@@ -16,10 +16,10 @@ export default function Accessories() {
         <div>
             <Navbar/>
             <Banner image={powerbankBannerImage} title = "Compare Powerbanks" info = "Compare, Select and Buy...">
-                <Link to = '/powerbankcomparison' className = "btn btn-primary">Checkout!</Link>
-                <Link to = '/powerbankcomparison' className = "btn btn-secondary"> Add to Cart! </Link>
+                <Link to = '/powerbankcomparison' className = "btn btn-primary">Compare!</Link>
+                <a href = '#accessories' className = "btn btn-secondary"> Checkout! </a>
             </Banner>
-            <div className="filtration-and-products">
+            <div id="accessories" className="filtration-and-products">
                 <PowerbankFilters data = {{filters, capacities, brands, updateFilters, clearFilters}}/>
                 <PaginatedProducts data = {{sortedProducts, page, changePage}}></PaginatedProducts>
             </div>

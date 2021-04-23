@@ -13,9 +13,6 @@ export default function AdminNavbar() {
                 <Link to='/admindashboard'><img src={Logo} alt="Techyard" className="logo"/></Link>
                 <ul className="navLinks">
                     <li>
-                        <Link to='/admindashboard'>Home</Link>
-                    </li>
-                    <li>
                         <Link to='/adminmobile'>Mobiles</Link>
                     </li>
                     <li>
@@ -23,6 +20,12 @@ export default function AdminNavbar() {
                     </li>
                     <li>
                         <Link to='/adminpowerbank'>Powerbanks</Link>
+                    </li>
+                    <li>
+                        <Link to='/coupons'>Coupons</Link>
+                    </li>
+                    <li>
+                        <Link to='/addcomingsoon'>Coming Soon</Link>
                     </li>
                     {
                         subAdmin && (
