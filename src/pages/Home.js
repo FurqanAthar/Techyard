@@ -7,6 +7,7 @@ import ProductList from '../components/productList'
 import { mobileContext } from '../context/mobileContext'
 import {headphoneContext} from '../context/headphoneContext'
 import {powerbankContext} from '../context/powerbankContext'
+import SmallBannerCards from '../components/SmallBannerCards'
 import {comingSoonContext} from '../context/comingSoonContext'
 import bannerImage from '../assets/banner images/home/homebanner.png'
 import PowerbankProductList from '../components/powerbanks/productList'
@@ -60,6 +61,7 @@ export default function Home() {
                 <Link to = '/register' className = "btn btn-primary"> Register! </Link>
                 <Link to = '/mobiles' className = "btn btn-secondary"> See Other Products </Link>
             </Banner>
+            <SmallBannerCards/>
             <div className="section">
                 <h2>MOBILES</h2>
                 {

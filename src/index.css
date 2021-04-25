@@ -293,7 +293,7 @@ nav .sidebar {
     width: 30%;
     margin: 15px;
     height: 250px;
-    border: 2px solid var(--golden);
+    border: 2px solid var(--silver);
     transition: var(--mainTransition);
 }
 .banner-cards a:hover {

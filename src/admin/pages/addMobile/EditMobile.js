@@ -1,5 +1,7 @@
 import React from 'react'
+import { v4 as uuidv4} from 'uuid'
 import {Alert} from 'react-bootstrap'
+import {storage} from '../../../firebase'
 import {useParams, useHistory} from 'react-router-dom'
 import AdminNavbar from '../../components/AdminNavbar'
 import {addMobileContext} from '../../context/AddMobileContext'
@@ -7,6 +9,7 @@ import {addMobileContext} from '../../context/AddMobileContext'
 export default function EditMobile() {
     const {mobileData, success, editMobile} = React.useContext(addMobileContext)
     const [updateState, setUpdateState] = React.useState(0)
+    const [loading, setLoading] = React.useState(false)
     const [product, setProduct] = React.useState(null)
     const screenResolutionRef = React.useRef()
     const chargingWattageRef = React.useRef()
@@ -77,6 +80,21 @@ export default function EditMobile() {
                 if (e.target.name.split(i)[0] === `stock`) {
                     product.colors[i] = {...product.colors[i], [e.target.name.split(i)[0]]:parseInt(e.target.value)}
                 }
+                else if (e.target.name.split(i)[0] === `image`) {
+                    setLoading(true)
+                    let uid = uuidv4()
+                    let uploadTask = storage.ref(`images/${uid}`).put(e.target.files[0])
+                    uploadTask.on("state_changed", snapshot => {}, error => console.log(error), () => {
+                    storage
+                        .ref('images')
+                        .child(uid)
+                        .getDownloadURL()
+                        .then((picture) => {
+                            product.colors[i] = {...product.colors[i], 'image':picture}
+                            setLoading(false)
+                        }).catch((error) => {console.error(error)})
+                    })
+                }
                 else {
                     product.colors[i] = {...product.colors[i], [e.target.name.split(i)[0]]:e.target.value}
                 }
@@ -128,6 +146,7 @@ export default function EditMobile() {
                                             <label>Name <input type="text" name={`name${index}`} value={item.name} required onChange={handleColorData}/></label>
                                             <label>ColorCode <input type="text" name={`colorCode${index}`} value={item.colorCode} required onChange={handleColorData}/></label>
                                             <label>Stock <input type="number" name={`stock${index}`} value={item.stock} required onChange={handleColorData}/></label>
+                                            <label>Image Upload <input type="file" name={`image${index}`} accept="image/*" onChange={handleColorData}/></label>
                                         </div>
                                     )
                                 })
@@ -135,7 +154,7 @@ export default function EditMobile() {
                             {
                                 success && <Alert variant="success">Updated!</Alert>
                             }
-                            <button className="btn btn-secondary">Update</button>
+                            <button className="btn btn-secondary" disabled={loading}>Update</button>
                         </form> : <div className="section">Loading...</div>
                     }
                 </div>

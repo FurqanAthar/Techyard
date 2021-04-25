@@ -1,5 +1,7 @@
 import React from 'react'
+import { v4 as uuidv4} from 'uuid'
 import {Alert} from 'react-bootstrap'
+import {storage} from '../../../firebase'
 import {useParams, useHistory} from 'react-router-dom'
 import AdminNavbar from '../../components/AdminNavbar'
 import {addPowerbankContext} from '../../context/AddPowerbankContext'
@@ -7,6 +9,7 @@ import {addPowerbankContext} from '../../context/AddPowerbankContext'
 export default function EditPowerbank() {
     const {powerbankData, success, editPowerbank} = React.useContext(addPowerbankContext)
     const [updateState, setUpdateState] = React.useState(0)
+    const [loading, setLoading] = React.useState(false)
     const [product, setProduct] = React.useState(null)
     const descriptionRef = React.useRef()
     const dimensionsRef = React.useRef()
@@ -51,6 +54,23 @@ export default function EditPowerbank() {
         setProduct({...productCopy})
         editPowerbank(product, id)
     }
+
+    const handleImage = (e) => {
+        setLoading(true)
+        let uid = uuidv4()
+        let uploadTask = storage.ref(`images/${uid}`).put(e.target.files[0])
+        uploadTask.on("state_changed", snapshot => {}, error => console.log(error), () => {
+        storage
+            .ref('images')
+            .child(uid)
+            .getDownloadURL()
+            .then((picture) => {
+                setProduct({...product, 'image':picture})
+            }).then(()=>{
+                setLoading(false)
+            }).catch((error) => {console.error(error)})
+        })
+    }
     
     return (
         <>
@@ -74,10 +94,11 @@ export default function EditPowerbank() {
                             <label>Input<input type="text" ref={inputRef} value={product.features.input} onChange={handleData} required/></label>
                             <label>Output<input type="text" ref={outputRef} value={product.features.output} onChange={handleData} required/></label>
                             <label>Dimensions<input type="text" ref={dimensionsRef} value={product.features.dimensions} onChange={handleData} required/></label>
+                            <label>Image Upload <input type="file" name={`image`} accept="image/*" onChange={handleImage}/></label>
                             {
                                 success && <Alert variant="success">Updated!</Alert>
                             }
-                            <button className="btn btn-secondary">Update</button>
+                            <button className="btn btn-secondary" disabled={loading}>Update</button>
                         </form> : <div className="section">Loading...</div>
                     }
                 </div>

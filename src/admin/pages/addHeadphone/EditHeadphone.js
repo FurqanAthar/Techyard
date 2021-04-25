@@ -1,5 +1,7 @@
 import React from 'react'
+import { v4 as uuidv4} from 'uuid'
 import {Alert} from 'react-bootstrap'
+import {storage} from '../../../firebase'
 import {useParams, useHistory} from 'react-router-dom'
 import AdminNavbar from '../../components/AdminNavbar'
 import {addHeadphoneContext} from '../../context/AddHeadphoneContext'
@@ -7,6 +9,7 @@ import {addHeadphoneContext} from '../../context/AddHeadphoneContext'
 export default function EditHeadphone() {
     const {headphoneData, success, editHeadphone} = React.useContext(addHeadphoneContext)
     const [updateState, setUpdateState] = React.useState(0)
+    const [loading, setLoading] = React.useState(false)
     const [product, setProduct] = React.useState(null)
     const noiseCancelRef = React.useRef()
     const descriptionRef = React.useRef()
@@ -51,6 +54,22 @@ export default function EditHeadphone() {
         setProduct({...productCopy})
         editHeadphone(product, id)
     }
+
+    const handleImage = (e) => {
+        setLoading(true)
+        let uid = uuidv4()
+        let uploadTask = storage.ref(`images/${uid}`).put(e.target.files[0])
+        uploadTask.on("state_changed", snapshot => {}, error => console.log(error), () => {
+        storage
+            .ref('images')
+            .child(uid)
+            .getDownloadURL()
+            .then((picture) => {
+                setProduct({...product, 'image':picture})
+                setLoading(false)
+            }).catch((error) => {console.error(error)})
+        })
+    }
     
     return (
         <>
@@ -75,10 +94,11 @@ export default function EditHeadphone() {
                             <label className="container" onClick={changeWireless}>Wireless
                                 <input type="checkbox" name="wirekess" checked={product.features.wireless ? true : false}/>
                             </label>
+                            <label>Image Upload <input type="file" name={`image`} accept="image/*" onChange={handleImage}/></label>
                             {
                                 success && <Alert variant="success">Updated!</Alert>
                             }
-                            <button className="btn btn-secondary">Update</button>
+                            <button className="btn btn-secondary" disabled={loading}>Update</button>
                         </form> : <div className="section">Loading...</div>
                     }
                 </div>

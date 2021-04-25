@@ -1,13 +1,12 @@
 import React from 'react'
 import SingleBannerCard from './singleBannerCard'
-import accessoriesImage from '../assets/product images/powerbanks/apt100.png'
-import mobileImage from '../assets/product images/mobile/note20bronze.png'
-import laptopImage from '../assets/product images/laptops/inspiron14.png'
-import headphoneImage from '../assets/product images/headphones/_059plus.png'
+import accessoriesImage from '../assets/banner images/powerbank/apt100.png'
+import mobileImage from '../assets/banner images/mobile/mobileBanner.png'
+import headphoneImage from '../assets/banner images/headphone/_059plus.png'
 
 export default function SmallBannerCards() {
-    const pages = ["accessories", "tablets", "mobiles", "laptops"]
-    const images = [accessoriesImage, mobileImage, laptopImage, headphoneImage]
+    const pages = ["mobiles", "headphones", "accessories" ]
+    const images = [mobileImage, headphoneImage, accessoriesImage]
     return (
         <div className="banner-cards section">
             {
