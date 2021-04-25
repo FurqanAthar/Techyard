@@ -168,6 +168,56 @@ nav .sidebar {
     color: var(--white);
 }
 
+/* Footer */
+.footer {
+    background: var(--black);
+	height: 60px;
+	width: 100%;
+    padding: 10px!important;
+    display: flex;
+    align-content: space-between;
+}
+.footer a {
+    width: 15%;
+}
+.footer .logo {
+    width: 130px;
+    object-fit: cover;
+}
+.footer .footerLinks {
+    width: 65%;
+    /* margin: 10px 0px; */
+    text-align: center;
+    list-style: none;
+}
+.footer .footerLinks {
+    width: 80%;
+    margin: 0;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+.footerLinks li{
+    line-height: 0px!important;
+}
+.footerLinks a {
+    color: var(--silver)!important;
+    height: 50%;
+}
+.footer .mainMenu {
+    width: 15%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0px!important;
+}
+.footer .mainMenu li {
+	display: inline-block;
+    margin-left: 10px;
+    color: var(--white);
+    font-size: 16px;
+}
+
 /* Signup */
 .signup {
     text-align: center;

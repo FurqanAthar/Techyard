@@ -1,6 +1,8 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
+// Footer
+import Footer from './components/Footer'
 // Home Pages
 import Home from './pages/Home'
 import Dashboard from './admin/pages/Dashboard'
@@ -136,8 +138,9 @@ function App() {
         <Route path="/superadminlogin"><SuperAdminLogin/></Route>
         <SuperAdminPrivateRoute path="/superadmindashboard" name="private"> <SuperAdminDashboard/> </SuperAdminPrivateRoute>
 
-
       </Switch>
+      {/* Footer */}
+      <Footer/>
     </Router>
   );
 }
