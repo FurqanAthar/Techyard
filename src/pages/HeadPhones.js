@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Banner from '../components/banner'
-import headphoneBannerImage from '../assets/banner images/headphone/_059plus.png'
+import headphoneBannerImage from '../assets/banner images/headphone/finalheadphones.png'
 import {headphoneContext} from '../context/headphoneContext'
 import PaginatedProducts from '../components/headphones/paginatedProducts'
 import HeadphoneFilters from '../components/filters/headphoneFilters'

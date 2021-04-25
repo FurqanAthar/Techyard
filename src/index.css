@@ -177,15 +177,17 @@ nav .sidebar {
 /* Footer */
 .footer {
     background: var(--black);
-	/* height: 60px; */
 	width: 100%;
     padding: 10px!important;
     display: flex;
-    align-content: space-between;
+    align-content:space-around;
     position: absolute;
     bottom: 0;
 }
-.footer a {
+.footer > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 15%;
 }
 .footer .logo {
@@ -193,13 +195,13 @@ nav .sidebar {
     object-fit: cover;
 }
 .footer .footerLinks {
-    width: 65%;
+    width: 15%;
     /* margin: 10px 0px; */
     text-align: center;
     list-style: none;
 }
 .footer .footerLinks {
-    width: 80%;
+    /* width: 80%; */
     margin: 0;
     display: flex;
     justify-content:center;
@@ -213,9 +215,9 @@ nav .sidebar {
     height: 50%;
 }
 .footer .mainMenu {
-    width: 15%;
+    width: 65%;
     display: flex;
-    justify-content: flex-end;
+    justify-content:center;
     align-items: center;
     margin: 0px!important;
 }
@@ -285,22 +287,21 @@ nav .sidebar {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    margin: 60px 0px;
 }
-.banner-cards a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.banner-card {
     width: 30%;
-    margin: 15px;
-    height: 250px;
-    border: 2px solid var(--silver);
+    margin: 0 auto;
+    max-width: 300px!important;
+    max-height: 300px!important;
     transition: var(--mainTransition);
+    overflow: hidden;
 }
-.banner-cards a:hover {
+.banner-card img {
+    height: 200px;
+}
+.banner-card a:hover {
     transform: scale(1.02);
-}
-.banner-card h3 {
-    text-transform: uppercase;
 }
 
 /* Single Product Card */

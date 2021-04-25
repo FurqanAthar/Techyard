@@ -61,7 +61,9 @@ export default function Home() {
                 <Link to = '/register' className = "btn btn-primary"> Register! </Link>
                 <Link to = '/mobiles' className = "btn btn-secondary"> See Other Products </Link>
             </Banner>
-            <SmallBannerCards/>
+            <div className="section">
+                <SmallBannerCards/>
+            </div>
             <div className="section">
                 <h2>MOBILES</h2>
                 {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Banner from '../components/banner'
-import powerbankBannerImage from '../assets/banner images/powerbank/apt100.png'
+import powerbankBannerImage from '../assets/banner images/powerbank/pbcomp.png'
 import { powerbankContext } from '../context/powerbankContext'
 import PaginatedProducts from '../components/powerbanks/paginatedProducts'
 import PowerbankFilters from '../components/filters/powerbankFilter'

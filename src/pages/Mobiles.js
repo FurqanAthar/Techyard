@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Banner from '../components/banner'
-import mobileBannerImage from '../assets/banner images/mobile/mobileBanner2.png'
-import PagenatedProducts from '../components/pagenatedProducts'
-import {mobileContext} from '../context/mobileContext'
-import MobileFilters from '../components/filters/mobileFilters'
-import {getAllUnique} from '../utilityFunctions/utils'
 import Navbar from '../components/navbar'
+import {mobileContext} from '../context/mobileContext'
+import {getAllUnique} from '../utilityFunctions/utils'
+import MobileFilters from '../components/filters/mobileFilters'
+import PagenatedProducts from '../components/pagenatedProducts'
+import mobileBannerImage from '../assets/banner images/mobile/mobileBanner2.png'
 
 export default function Mobiles() {
     let {sortedProducts, page, changePage, filters, roms, rams, allColors, batterys, chargingTypes, brands, updateFilters, clearFilters} = React.useContext(mobileContext)
