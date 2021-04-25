@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../context/authContext'
 import Logo from '../assets/Logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart, faUser, faBars } from '@fortawesome/free-solid-svg-icons'
+import { faUserCircle, faShoppingBag } from '@fortawesome/free-solid-svg-icons'
 
 export default function Navbar() {
     const { currentUser, logout } = useAuth()
@@ -49,8 +49,8 @@ export default function Navbar() {
                     }
                 </ul>
                 <ul className="mainMenu">
-                    <li><Link to='/mycart'><FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon></Link></li>
-                    <li><Link to='/forgot-password'><FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Link></li>
+                    <li><Link to='/mycart'><FontAwesomeIcon icon={faShoppingBag}></FontAwesomeIcon></Link></li>
+                    <li><Link to='/forgot-password'><FontAwesomeIcon icon={faUserCircle}></FontAwesomeIcon></Link></li>
                 </ul>
             </nav>
         </div>

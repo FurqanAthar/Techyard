@@ -15,11 +15,11 @@ export default function ProductCard({singleProductData}) {
     return (
             <div className="product-card">
                 <div className="product-image-container">
-                    <img src={data.image} alt={data.model}/>
+                    <img src={data.image} alt={data.model} onClick={gotoDetail}/>
                 </div>
                 <div className="product-content">
                     <h4 className="product-brand">{data.brand}</h4>
-                    <h2 className="product-title">{data.model}</h2>
+                    <h2 className="product-title" onClick={gotoDetail}>{data.model}</h2>
                     <h3 className="product-price">Rs.{data.price}</h3>
                 </div>
                 <p>{shortDescription}</p>

@@ -83,17 +83,12 @@ export default function AdminQueryContextProvider({children}) {
             feedback : f,
             status : `closed`
         }).then(() => {
-            setSuccess(`Feedback Given`)
-            setTimeout(()=>{
-                setSuccess(``)
-                setLoading(false)
-                setLoad(true)
-            }, 3000)
+            setLoading(false)
         })
     }
 
     return (
-        <adminQueryContext.Provider value={{allQueries, loading, success, addQuery, openQueries, closedQueries, updateFilters, filtered, filters, feedback}}>
+        <adminQueryContext.Provider value={{allQueries, loading, success, addQuery, openQueries, closedQueries, updateFilters, filtered, filters, feedback, setLoad}}>
             {children}
         </adminQueryContext.Provider>
     )

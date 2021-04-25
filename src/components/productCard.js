@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, Redirect, useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingBag, faEye } from '@fortawesome/free-solid-svg-icons'
 
@@ -34,14 +34,14 @@ export default function ProductCard({singleProductData}) {
                     {
                         data.colors.map((singleImage, index) => {
                             return (
-                                <img src={singleImage.image} alt={`img${index}`}/>
+                                <img src={singleImage.image} alt={`img${index}`} onClick={gotoDetail}/>
                             )
                         })
                     }
                 </div>
                 <div className="product-content">
                     <h4 className="product-brand">{data.brand}</h4>
-                    <h2 className="product-title">{data.model}</h2>
+                    <h2 className="product-title" onClick={gotoDetail}>{data.model}</h2>
                     <h3 className="product-price">Rs.{data.price}</h3>
                 </div>
                 <div className="color-box">

@@ -1,15 +1,21 @@
 import React from 'react'
 import {Alert} from 'react-bootstrap'
-import { firestore } from '../../../firebase'
 import {adminQueryContext} from '../../../context/adminQueryContext'
 
 export default function QueryFeedbackCard({data}) {
-    const {feedback, loading, success} = React.useContext(adminQueryContext)
+    const {feedback, loading, setLoad} = React.useContext(adminQueryContext)
+    const [success1, setSuccess1] = React.useState(``)
     const feedbackRef = React.useRef()
 
     const addFeedback = async (e) => {
         e.preventDefault()
-        await feedback(data.id, feedbackRef.current.value)
+        await feedback(data.id, feedbackRef.current.value).then(() => {
+            setSuccess1(`Feedback Added`)
+            setTimeout(()=>{
+                setSuccess1(``)
+                setLoad(true)
+            }, 3000)
+        })
         feedbackRef.current.value = ``
     }
 
@@ -17,7 +23,7 @@ export default function QueryFeedbackCard({data}) {
         <>
             <div className="mycart-section">
                 {
-                    success && <Alert variant="success">{success}</Alert>
+                    success1 && <Alert variant="success">{success1}</Alert>
                 }
                 <div className="query-item">
                     <h4>Query ID: <span>{data.id}</span></h4>

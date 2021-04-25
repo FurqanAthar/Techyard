@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Banner from '../components/banner'
-import mobileBannerImage from '../assets/banner images/mobile/mobileBanner.png'
+import mobileBannerImage from '../assets/banner images/mobile/mobileBanner2.png'
 import PagenatedProducts from '../components/pagenatedProducts'
 import {mobileContext} from '../context/mobileContext'
 import MobileFilters from '../components/filters/mobileFilters'
@@ -19,7 +19,7 @@ export default function Mobiles() {
     return (
         <div>
             <Navbar/>
-            <Banner image={mobileBannerImage} title = "Compare Mobile Phones" info = "Get Ideas about how you want your next phone to be!">
+            <Banner image={mobileBannerImage} title = "Compare Mobiles" info = "Get Ideas about how you want your next phone to be!">
                 <Link to = '/mobilecomparison' className = "btn btn-primary">Compare!</Link>
                 <a href = '#mobiles' className = "btn btn-secondary"> Checkout! </a>
             </Banner>

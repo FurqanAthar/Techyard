@@ -33,7 +33,7 @@ export default function HeadphoneDetailPage() {
         const {model, price, stock, description, brand, features, image} = product
         // getting related products
         headphoneData.forEach(single => {
-            if (single.brand.toLowerCase() === product.brand.toLowerCase() && countRelatedProducts <= 4) {
+            if (single.brand.toLowerCase() === product.brand.toLowerCase() && single.id !== id && countRelatedProducts <= 4) {
                 countRelatedProducts++
                 relatedProducts.push(single)
             }
@@ -147,7 +147,7 @@ export default function HeadphoneDetailPage() {
                     }
                 </div>
                 {
-                    relatedProducts && (
+                    relatedProducts.length > 0 && (
                         <div className="related-products section">
                             <div className="btn btn-secondary">Related Products</div>
                             <ProductList products = {relatedProducts}></ProductList>

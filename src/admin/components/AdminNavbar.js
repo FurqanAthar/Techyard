@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import Logo from '../../assets/Logo.png'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {subAdminContext} from '../context/LoginSignupContexts/subAdminContext'
 
@@ -39,7 +39,7 @@ export default function AdminNavbar() {
                     }
                 </ul>
                 <ul className="mainMenu">
-                    <li><Link to='/subadminupdatepassword'><FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Link></li>
+                    <li><Link to='/subadminupdatepassword'><FontAwesomeIcon icon={faUserCircle}></FontAwesomeIcon></Link></li>
                 </ul>
             </nav>
         </div>

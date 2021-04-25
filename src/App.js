@@ -70,10 +70,13 @@ import ClosedQueries from './admin/pages/queries/ClosedQueries'
 // Client Queries
 import Query from './pages/adminQuery/Query'
 import MyQueries from './pages/adminQuery/MyQueries'
+// Scroll To Top
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   return (
     <Router>
+      <ScrollToTop/>
       <Switch>
         {/* --------------------------------------  Client Side -----------------------------------*/}
         {/* Display Pages */}

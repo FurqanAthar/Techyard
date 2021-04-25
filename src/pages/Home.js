@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Banner from '../components/banner'
 import Navbar from '../components/navbar'
+import {useHistory} from 'react-router-dom'
 import ProductList from '../components/productList'
 import { mobileContext } from '../context/mobileContext'
 import {headphoneContext} from '../context/headphoneContext'
@@ -16,9 +17,10 @@ export default function Home() {
     const {powerbankData} = React.useContext(powerbankContext)
     const {headphoneData} = React.useContext(headphoneContext)
     const {mobileData} = React.useContext(mobileContext)
-    let limitedMobileData = []
-    let limitedHeadphoneData = []
+    const history = useHistory()
     let limitedPowerbankData = []
+    let limitedHeadphoneData = []
+    let limitedMobileData = []
 
     if (mobileData.length > 0) {
         if (mobileData.length > 4) {
@@ -63,18 +65,21 @@ export default function Home() {
                 {
                     limitedMobileData.length > 0 ? <ProductList products = {limitedMobileData}></ProductList> : <p>Loading...</p>
                 }
+                <button className="btn btn-primary" onClick={()=>history.push('/mobiles')}>See More!</button>
             </div>
             <div className="section">
                 <h2>HEADPHONES</h2>
                 {
                     limitedHeadphoneData.length > 0 ? <HeadphoneProductList products = {limitedHeadphoneData}></HeadphoneProductList> : <p>Loading...</p>
                 }
+                <button className="btn btn-primary" onClick={()=>history.push('/headphones')}>See More!</button>
             </div>
             <div className="section">
                 <h2>POWERBANKS</h2>
                 {
                     limitedPowerbankData.length > 0 ? <PowerbankProductList products = {limitedPowerbankData}></PowerbankProductList> : <p>Loading...</p>
                 }
+                <button className="btn btn-primary" onClick={()=>history.push('/accessories')}>See More!</button>
             </div>
         </div>
     )
