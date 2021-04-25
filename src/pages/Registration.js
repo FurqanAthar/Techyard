@@ -32,7 +32,7 @@ export default function Registration() {
                         <label>Last Name <input type="text" ref={lastNameRef} required/></label>
                         <label>Email <input type="email" ref={emailRef} required/></label>
                         <label>Phone Number <input type="number" ref={numberRef} required/></label>
-                        <button className="btn btn-secondary" disabled={loading}>Add Product</button>
+                        <button className="btn btn-secondary" disabled={loading}>Register</button>
                     </form>
                 </div>
             </div>

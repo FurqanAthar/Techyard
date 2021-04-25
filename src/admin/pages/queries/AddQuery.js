@@ -33,7 +33,7 @@ export default function AddQuery() {
                     <form onSubmit={handleSubmit}>
                         <label>Subject <input type="text" ref={subjectRef} required/></label>
                         <label>Code <input type="text" ref={codeRef} required/></label>
-                        <button className="btn btn-secondary" disabled={loading}>Add Coming Soon Product</button>
+                        <button className="btn btn-secondary" disabled={loading}>Add Query Subject</button>
                     </form>
                 </div>
             </div>
