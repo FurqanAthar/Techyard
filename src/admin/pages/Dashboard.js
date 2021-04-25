@@ -15,7 +15,7 @@ export default function Dashboard() {
     const {powerbankData} = React.useContext(addPowerbankContext)
     const {mobileData} = React.useContext(addMobileContext)
     const {couponData} = React.useContext(couponContext)
-    const {orderData, newOrders} = React.useContext(orderContext)
+    const {validatedOrders} = React.useContext(orderContext)
     const history = useHistory()
     return (
         <>
@@ -23,14 +23,14 @@ export default function Dashboard() {
             <div className="section d-flex">
                 <div className="admindashboard-orders">
                     <div className="count-button">
-                        <p>New Orders: {newOrders.length}</p>
+                        <p>Validated Orders: {validatedOrders.length}</p>
                         <button className="btn btn-secondary" onClick={() => history.push('/orders')}>See All</button>
                     </div>
                     {
-                        newOrders.length > 0 ? (
+                        validatedOrders.length > 0 ? (
                             <>
                                 {
-                                    newOrders.map((item, index) => {
+                                    validatedOrders.map((item, index) => {
                                         if (index < 2) {
                                             return <OrderCard data={{...item}} key={index}/>
                                         }

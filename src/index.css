@@ -18,11 +18,17 @@
     --poppins: 'Poppins', sans-serif;
 }
 
+html{
+ min-height: 100%;
+ position: relative;
+}
+
 body {
     background-color: var(--backgroundDark);
     color: var(--white);
     font-family: var(--poppins);
     padding: 0px!important;
+    padding-bottom: 60px!important;
 }
 
 .d-flex {
@@ -171,11 +177,13 @@ nav .sidebar {
 /* Footer */
 .footer {
     background: var(--black);
-	height: 60px;
+	/* height: 60px; */
 	width: 100%;
     padding: 10px!important;
     display: flex;
     align-content: space-between;
+    position: absolute;
+    bottom: 0;
 }
 .footer a {
     width: 15%;
