@@ -1,5 +1,5 @@
 export function paginateProducts(products) {
-    const itemsPerPage = 6
+    const itemsPerPage = 9
     const numberOfPages = Math.ceil(products.length / itemsPerPage)
 
     const newProducts = Array.from({length : numberOfPages}, (_, index) => {
@@ -18,4 +18,44 @@ export function getAllUnique(a) {
         }
     }
     return unique
+}
+
+export function getAllTitles(comparisonProducts){
+    let titles = comparisonProducts.map(single => {
+        return single.model;
+    })
+    return titles;
+}
+
+export function checkStockWithColor (id, color, amount, allProducts) {
+    const product = allProducts.find(item => {
+        if (item.id == id) {
+            return item
+        }
+    })
+    let value = false
+    product.colors.forEach(singleItem => {
+        if (singleItem.name == color) {
+            if (Math.abs(singleItem.stock - amount) >= 1) {
+                value = true
+            }
+        }
+    })
+    return value
+}
+
+export function checkStockWithoutColor (id, amount, allProducts) {
+    const product = allProducts.find(item => {
+        if (item.id == id) {
+            return item
+        }
+    })
+    if (Math.abs(product.stock - amount) >= 1) {
+        return true
+    }
+    return false
+}
+
+export function applyDiscount (discount, total) {
+    return total - (total * discount/100)
 }

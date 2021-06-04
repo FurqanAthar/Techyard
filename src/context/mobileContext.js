@@ -1,11 +1,12 @@
 import React from 'react'
-import data from '../data/mobileData'
+import {addMobileContext} from '../admin/context/AddMobileContext'
 import {paginateProducts} from '../utilityFunctions/utils'
 
 export const mobileContext = React.createContext();
 
 export default function MobileContextProvider({children}) {
-    const [mobileData, setMobileData] = React.useState(data);
+    const {mobileData} = React.useContext(addMobileContext)
+    // const [mobileData, setMobileData] = React.useState(data);
     const [sortedProducts, setSortedProducts] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [filters, setFilters] = React.useState({
@@ -15,7 +16,8 @@ export default function MobileContextProvider({children}) {
         battery : "all",
         chargingType : "all",
         color : "all",
-        brand: "all"
+        brand: "all",
+        search : ""
     })
     const [brands, setBrands] = React.useState([])
     const [roms, setRoms] = React.useState([])
@@ -37,12 +39,12 @@ export default function MobileContextProvider({children}) {
             setBatterys((prev) => ([...prev, singleMobile.features.battery]))
             setChargingTypes((prev) => ([...prev, singleMobile.features.charging.type]))
         })
-    }, [])
+    }, [mobileData])
 
     // For applying filters
     React.useEffect(() => {
         let newProducts = [...mobileData]
-        const {brand, rom, ram, battery, chargingType, price} = filters
+        const {brand, rom, ram, battery, chargingType, price, search} = filters
 
         if (brand !== "all") {
             newProducts = newProducts.filter(item => item.brand.toLowerCase() == brand)
@@ -59,12 +61,40 @@ export default function MobileContextProvider({children}) {
         if (chargingType !== "all") {
             newProducts = newProducts.filter(item => item.features.charging.type == chargingType)
         }
+        if (price !== "all") {
+            if (price !== "other") {
+                newProducts = newProducts.filter(item => item.price <= price)
+            }
+            else {
+                newProducts = newProducts.filter(item => item.price > 100000)
+            }
+        }
+        if (search !== "") {
+            newProducts = newProducts.filter(item => {
+                if (item.model.toLowerCase().includes(search.toLowerCase()) || item.brand.toLowerCase().includes(search.toLowerCase())) {
+                    return item
+                }
+            })
+        }
         setPage(0)
         setSortedProducts(paginateProducts(newProducts))
     }, [mobileData, filters])
 
     const changePage = (index) => {
         setPage(index)
+    }
+    const clearFilters = () => {
+        let filtersCopy = {
+            price : "all",
+            ram : "all",
+            rom : "all",
+            battery : "all",
+            chargingType : "all",
+            color : "all",
+            brand: "all",
+            search : ""
+        }
+        setFilters({...filtersCopy})
     }
     const updateFilters = (e) => {
         const type = e.target.type
@@ -87,10 +117,16 @@ export default function MobileContextProvider({children}) {
         else if (filter == `chargingType`) {
             filtersCopy.chargingType = value
         }
+        else if (filter == `price`) {
+            filtersCopy.price = value
+        }
+        else if (filter == `search`) {
+            filtersCopy.search = value
+        }
         setFilters({...filtersCopy})
     }
     return (
-        <mobileContext.Provider value = {{mobileData, sortedProducts, page, changePage, filters, roms, rams, allColors, batterys, chargingTypes, brands, updateFilters}}>
+        <mobileContext.Provider value = {{mobileData, sortedProducts, page, changePage, filters, roms, rams, allColors, batterys, chargingTypes, brands, updateFilters, clearFilters}}>
             {children}
         </mobileContext.Provider>
     )
